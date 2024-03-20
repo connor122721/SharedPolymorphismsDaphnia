@@ -1,0 +1,2 @@
+P1	P2	P3	Dstatistic	Z-score	p-value	f4-ratio	BBAA	ABBA	BABA
+Daphnia.pulicaria.NorthAmerica	Daphnia.pulex.NorthAmerica	Daphnia.pulex.Europe	0.0242489	6.09803	1.07381e-09	0.00776286	112334	23108.5	22014.3

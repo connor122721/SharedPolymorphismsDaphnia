@@ -1,0 +1,17 @@
+SNP Classification,3'UTR,5'UTR,Intergenic,Intronic,Non-synonymous,Splice,Start,Stop,Synonymous
+Polymorphic in North American D. pulex,"12,077","9,533","126,987","27,813","118,715",262,47,"2,575","256,201"
+Polymorphic in European D. pulex,"18,899","8,366","100,751","19,829","64,042",390,74,"1,231","120,401"
+Shared Polymorphism,"8,514","3,549","64,130","11,386","25,454",221,31,563,"43,163"
+Fixed Between D. pulex,186,172,"2,070",415,"2,412",2,3,13,"5,066"
+Nonvariable in D. pulex,"39,365","29,759","306,737","69,693","418,251",781,203,"7,389","939,380"
+Total SNPs,"79,041","51,379","600,675","129,136","628,874","1,656",358,"11,771","1,364,211"
+,,,,,,,,,
+All SNPs Before Filtering,"2,867,101",,,,,,,,
+,,,,,,,,,
+SNP Classification Post-Filtering,3'UTR,5'UTR,Intergenic,Intronic,Non-synonymous,Splice,Start,Stop,Synonymous
+Polymorphic in North American D. pulex," 3,066 "," 2,035 "," 24,760 "," 6,600 "," 32,151 ", 44 , 9 , 395 ," 94,036 "
+Polymorphic in European D. pulex," 8,173 "," 3,089 "," 38,119 "," 7,964 "," 32,806 ", 132 , 36 , 590 ," 64,212 "
+Shared Polymorphism," 1,357 ", 598 ," 9,037 "," 1,928 "," 4,933 ", 32 , 6 , 62 ," 11,030 "
+Total SNPs," 12,596 "," 5,722 "," 71,916 "," 16,492 "," 69,890 ", 208 , 51 ," 1,047 "," 169,278 "
+,,,,,,,,,
+All SNPs Post-Filtering,"347,200",,,,,,,,

@@ -1,0 +1,14 @@
+##gff-version 3
+CM028013.1	exonerate:protein2genome:local	cDNA_match	8051	9235	.	-	.	ID=nad4;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	6274	7920	.	-	.	ID=nad5;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	9350	9619	.	-	.	ID=nad4l;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	11542	12413	.	-	.	ID=nad1;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	9787	10292	.	+	.	ID=nad6;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	5526	5858	.	+	.	ID=nad3;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	3826	3966	.	+	.	ID=atp8;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	3984	4652	.	+	.	ID=atp6;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	10298	11425	.	+	.	ID=cob;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	3008	3670	.	+	.	ID=cox2;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	1405	2931	.	+	.	ID=cox1;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	225	1071	.	+	.	ID=nad2;Target=mtdna_D8_119;
+CM028013.1	exonerate:protein2genome:local	cDNA_match	4670	5443	.	+	.	ID=cox3;Target=mtdna_D8_119;

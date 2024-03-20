@@ -1,0 +1,9 @@
+Models,,,,,,,,
+M.0,Activity ~ 1 + Hour + (1|Individual) +(1|Day),,,,,,,
+M.1,Activity ~ Genotype + Hour + (1|Individual) +(1|Day),,,,,,,
+M.2,Activity ~ Genotype*Light + Hour + (1|Individual) +(1|Day),,,,,,,
+,,,,,,,,
+Models,Parameters,AIC,BIC,Log-likelihood,Deviance,Chi-square,DF,p-value
+M.0,5,-880.78,-855.3,445.39,-890.78,,,
+M.1,7,-878.46,-842.8,446.23,-892.46,1.6849,2,0.430651
+M.2,10,-886.63,-835.68,453.31,-906.63,14.1678,3,0.002685

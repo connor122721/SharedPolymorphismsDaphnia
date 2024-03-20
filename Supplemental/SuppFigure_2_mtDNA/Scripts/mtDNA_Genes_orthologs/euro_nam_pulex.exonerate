@@ -1,0 +1,1257 @@
+Command line: [exonerate --model protein2genome /scratch/csm6hg/Daphnia_mtdna/euro_pulex/mtdnaD8119.faa /scratch/csm6hg/Daphnia_mtdna/nam_pulex/NC_000844.1_Daphnia_pulex_mitochondrion.fasta --showtargetgff]
+Hostname: [udc-ba36-36]
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 3896-4054; +; atp8
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome
+         Model: protein2genome:local
+     Raw score: 186
+   Query range: 0 -> 52
+  Target range: 3820 -> 3976
+
+    1 : ValProGlnIleTrpProMetAsnTrpIleIleLeuPheTrpIlePheAlaLeuThrPheVa :   21
+        ||||||||||||!! |||!!:|||!! :!!||||||||||||||||||||||||||||||||
+        ValProGlnIle***ProIleAsn***ValIleLeuPheTrpIlePheAlaLeuThrPheVa
+ 3821 : GTGCCCCAAATCTGACCTATAAATTGAGTTATTCTTTTTTGGATTTTCGCTTTGACTTTTGT : 3881
+
+   22 : lMetPheValIlePheIleTyrPheMetAsnPheSerProLysIleSerLeuGluLysSerH :   42
+        |!!:|||:!!! !|||:!!||||||!  ||||||||||||||||||!!!|||||||||||||
+        lIlePheMetThrPheLeuTyrPheThrAsnPheSerProLysIleArgLeuGluLysSerH
+ 3882 : GATATTTATGACCTTCCTTTATTTCACAAACTTTTCTCCCAAAATTAGACTAGAGAAGTCCC : 3944
+
+   43 : isLeuValSerSerSerHisLeuAsnTrpLys :   52
+        ||! !..!!!!  !|||||||||:!!!! |||
+        isGlnThrThrLeuSerHisLeuAsp***Lys
+ 3945 : ATCAAACTACCCTGAGCCACCTAGACTGAAAA : 3976
+
+vulgar: mtdna_D8_119; 0 52 . NC_000844.1 3820 3976 + 186 M 52 156
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	3821	3976	186	+	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 69.23 ; similarity 82.69
+NC_000844.1	exonerate:protein2genome:local	cds	3821	3976	.	+	.	
+NC_000844.1	exonerate:protein2genome:local	exon	3821	3976	.	+	.	insertions 0 ; deletions 0 ; identity 69.23 ; similarity 82.69
+NC_000844.1	exonerate:protein2genome:local	similarity	3821	3976	186	+	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 3821 1 156
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 9416-9685; -; nad4l
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome:[revcomp]
+         Model: protein2genome:local
+     Raw score: 414
+   Query range: 0 -> 90
+  Target range: 9611 -> 9341
+
+    1 : IleLeuLeuValGlySerMetLeuIlePheLeuPheSerPheIleSerLysArgLysHisLe :   21
+        :!!||||||:!!||||||!!:|||||||||||||||!!!|||||||||||||||||||||||
+        ValLeuLeuIleGlySerIleLeuIlePheLeuPheArgPheIleSerLysArgLysHisLe
+ 9611 : GTTTTATTAATAGGGTCCATATTAATTTTTCTTTTTAGATTTATTTCTAAACGTAAGCATCT : 9551
+
+   22 : uLeuAlaThrLeuLeuSerLeuGluGlyLeuMetLeuMetIlePheGlyIleLeuPheTrpV :   42
+        |||||||||||||||||||||||||||||||||||||||||||||||||:!!||||||||||
+        uLeuAlaThrLeuLeuSerLeuGluGlyLeuMetLeuMetIlePheGlyValLeuPheTrpV
+ 9550 : TCTGGCTACTTTACTTAGTTTAGAGGGTTTGATGCTTATGATTTTTGGTGTTCTTTTTTGGG : 9488
+
+   43 : alSerSerLeuValAsnPheSerAsnPheValLeuIlePheLeuThrLeuThrAlaCysGlu :   62
+        ||!!!|||:!!|||!:!|||!!!|||||||||||||||||||||||||||||||||||||||
+        alArgSerMetValSerPheArgAsnPheValLeuIlePheLeuThrLeuThrAlaCysGlu
+ 9487 : TGAGATCTATGGTGAGTTTTAGAAATTTTGTTCTAATTTTTTTGACTCTTACAGCTTGCGAG : 9428
+
+   63 : GlyAlaLeuGlyLeuSerLeuLeuValSerLeuValArgThrHisGlyGlyAspAsnPheAs :   83
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        GlyAlaLeuGlyLeuSerLeuLeuValSerLeuValArgThrHisGlyGlyAspAsnPheAs
+ 9427 : GGAGCTTTAGGGCTCTCACTATTAGTTTCACTGGTCCGAACCCATGGCGGAGACAACTTTAA : 9365
+
+   84 : nSerLeuAsnAlaLeuGlnCys :   90
+        ||||||||||||||||||||||
+        nSerLeuAsnAlaLeuGlnCys
+ 9364 : CTCTTTAAACGCGCTACAGTGT : 9342
+
+vulgar: mtdna_D8_119; 0 90 . NC_000844.1 9611 9341 - 414 M 90 270
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	9342	9611	414	-	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 90.00 ; similarity 96.67
+NC_000844.1	exonerate:protein2genome:local	cds	9342	9611	.	-	.	
+NC_000844.1	exonerate:protein2genome:local	exon	9342	9611	.	-	.	insertions 0 ; deletions 0 ; identity 90.00 ; similarity 96.67
+NC_000844.1	exonerate:protein2genome:local	similarity	9342	9611	414	-	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 9612 1 270
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 8118-9305; -; nad4
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome:[revcomp]
+         Model: protein2genome:local
+     Raw score: 1738
+   Query range: 0 -> 396
+  Target range: 9231 -> 8043
+
+    1 : MetAspGlyPheGlyPheGlyLeuValAsnLeuIleGlnValAspLeuMetSerTyrPheLe :   21
+        !!:..!|||||||||!!.||||||||||||||||||||||||||||||!!:|||||||||||
+        IleSerGlyPheGlyLeuGlyLeuValAsnLeuIleGlnValAspLeuIleSerTyrPheLe
+ 9231 : ATAAGCGGGTTTGGATTAGGCCTAGTTAATCTCATTCAGGTTGATTTAATATCTTACTTTCT : 9171
+
+   22 : uSerTyrLeuSerIleTrpIleLeuAlaMetMetIleMetMetSerPheTyrIleLysAspT :   42
+        |!!!||||||||||||!! ||||||||||||||||||!!:!!:|||||||||:!!||||||:
+        uArgTyrLeuSerIle***IleLeuAlaMetMetIleIleIleSerPheTyrValLysAspH
+ 9170 : AAGATACTTATCTATTTGAATTCTAGCCATGATGATCATAATAAGCTTTTATGTCAAAGATC : 9108
+
+   43 : yrLysSerPheProGluValPheLeuGlyLeuGlyValSerMetLeuIlePheLeuLeuVal :   62
+        !!||||||||||||||||||||||||||||||||||||.!!!!:||||||||||||||||||
+        isLysSerPheProGluValPheLeuGlyLeuGlyValGlyIleLeuIlePheLeuLeuVal
+ 9107 : ACAAGAGTTTCCCAGAAGTCTTTTTAGGGTTGGGAGTGGGAATACTAATTTTTCTATTAGTG : 9048
+
+   63 : SerPheGlyThrSerAspLeuLeuMetTyrTyrIleAlaPheGluThrThrLeuIleProIl :   83
+        ||||||||||||||||||||||||!!:|||||||||||||||||||||||||||||||||||
+        SerPheGlyThrSerAspLeuLeuIleTyrTyrIleAlaPheGluThrThrLeuIleProIl
+ 9047 : AGCTTCGGAACTTCAGATCTTTTGATATATTATATTGCTTTTGAGACTACTCTAATTCCTAT : 8985
+
+   84 : ePheLeuLeuIleMetGlyTrpGlyTyrGlnProGluArgValPheAlaSerTyrPheLeuL :  104
+        ||||||||||:!!|||||||||||||||||||||||||||:!!! !||||||||||||||||
+        ePheLeuLeuValMetGlyTrpGlyTyrGlnProGluArgIleSerAlaSerTyrPheLeuL
+ 8984 : TTTTTTACTAGTTATGGGTTGGGGGTACCAACCCGAACGTATCTCTGCTTCTTACTTCCTTT : 8922
+
+  105 : euPheTyrThrLeuAlaAlaSerLeuProLeuLeuLeuGlyIleLeuTrpValAsnTyrSer :  124
+        |||||||||||||||||||||||||||||||||||||||||||||||!! ||||||!:!!!!
+        euPheTyrThrLeuAlaAlaSerLeuProLeuLeuLeuGlyIleLeu***ValAsnPheThr
+ 8921 : TATTTTACACCCTTGCTGCCTCCCTGCCCTTACTTTTGGGTATCCTCTGAGTTAACTTTACG : 8862
+
+  125 : AspCysSerLeuAspTyrSerPheLeuAlaGlnGlyAlaGlnPheAsnAsnSerIleLeuPh :  145
+        ||||||||||||||||||! !||||||!.!|||||||||||||||::!||| !!||||||||
+        AspCysSerLeuAspTyrPhePheLeuGlyGlnGlyAlaGlnPheSerAsnProIleLeuPh
+ 8861 : GACTGCAGTCTTGACTACTTTTTTTTAGGGCAGGGGGCCCAATTTTCTAATCCTATCTTATT : 8799
+
+  146 : eTrpPheMetLeuLeuAlaPheLeuValLysLeuProValTyrPheGlyHisLeuTrpLeuP :  166
+        |!! !!.!!:|||||||||||||||||||||||||||||||||||||||||||||!! ||||
+        e***LeuIleLeuLeuAlaPheLeuValLysLeuProValTyrPheGlyHisLeu***LeuP
+ 8798 : TTGATTAATACTGTTGGCGTTTCTAGTCAAGCTTCCCGTATATTTTGGACATTTGTGACTTC : 8736
+
+  167 : roLysAlaHisValGluAlaProValAlaGlySerMetIleLeuAlaGlyValLeuLeuLys :  186
+        |||||||||||||||||||||||||||||||||||!!:||||||||||||||||||||||||
+        roLysAlaHisValGluAlaProValAlaGlySerIleIleLeuAlaGlyValLeuLeuLys
+ 8735 : CTAAGGCCCATGTTGAGGCCCCAGTTGCAGGGTCTATAATTCTAGCGGGGGTTTTATTAAAG : 8676
+
+  187 : LeuGlyGlyTyrGlyMetValArgValValProTyrIleGluLeuSerLeuSerGluPheSe :  207
+        |||||||||||||||!!:||||||||||||||||||||||||||||||||||||||||||||
+        LeuGlyGlyTyrGlyIleValArgValValProTyrIleGluLeuSerLeuSerGluPheSe
+ 8675 : TTAGGGGGGTACGGAATAGTTCGAGTTGTCCCTTACATCGAATTAAGTCTTAGTGAGTTTTC : 8613
+
+  208 : rSerLeuLeuMetSerValSerLeuValGlyGlyAlaThrAlaSerIleIleCysIleArgG :  228
+        ||||!!!||||||!!!|||!!!||||||||||||!.!|||||||||:!!|||||||||||||
+        rSerPheLeuMetArgValArgLeuValGlyGlyValThrAlaSerValIleCysIleArgG
+ 8612 : TAGTTTTCTTATGAGAGTTAGACTTGTGGGAGGGGTGACTGCCTCTGTTATTTGCATCCGCC : 8550
+
+  229 : lnThrAspCysLysSerLeuValAlaTyrSerSerValAlaHisMetAlaLeuValLeuPhe :  248
+        ||||||||||||||||||||||||||||||||||||||||||||!!:||||||||||||!!.
+        lnThrAspCysLysSerLeuValAlaTyrSerSerValAlaHisIleAlaLeuValLeuLeu
+ 8549 : AAACTGACTGTAAATCGTTAGTAGCTTACTCTTCAGTAGCTCATATAGCTTTAGTTCTTTTA : 8490
+
+  249 : GlyValValIleAsnSerSerValGlyLeuAlaGlyValValThrIleMetValSerHisGl :  269
+        ||||||||||||||||||||||||||||||||||||||||||||||||!!::!!||||||||
+        GlyValValIleAsnSerSerValGlyLeuAlaGlyValValThrIleIleIleSerHisGl
+ 8489 : GGGGTGGTTATTAACTCTTCTGTTGGATTGGCGGGTGTAGTAACGATTATAATTAGTCACGG : 8427
+
+  270 : yLeuCysSerSerGlyLeuPheSerLeuValGlyMetIleTyrGluArgMetGlyThrArgS :  290
+        ||||||||||||||||||||||!!!|||||||||!!:||||||||||||||||||||||||!
+        yLeuCysSerSerGlyLeuPheArgLeuValGlyIleIleTyrGluArgMetGlyThrArgA
+ 8426 : CCTCTGTTCTTCGGGGCTATTCAGATTAGTCGGGATAATCTACGAGCGTATGGGGACTCGAA : 8364
+
+  291 : erIleIleLeuIleArgSerLeuIleThrLeuAlaProLeuSerThrLeuTrpTrpPheLeu :  310
+        !!||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        rgIleIleLeuIleArgSerLeuIleThrLeuAlaProLeuSerThrLeuTrpTrpPheLeu
+ 8363 : GAATTATTTTAATTCGTAGTTTAATTACTTTAGCCCCTCTCTCTACTTTGTGGTGGTTTCTT : 8304
+
+  311 : PheValValSerAsnMetAlaAlaProProSerProAsnLeuLeuGlyGluIleTyrLeuPh :  331
+        |||!.!:!!||||||!!:||||||||||||||||||||||||||||||||||||||||||||
+        PheAlaIleSerAsnIleAlaAlaProProSerProAsnLeuLeuGlyGluIleTyrLeuPh
+ 8303 : TTTGCTATTAGTAATATAGCTGCCCCCCCATCACCCAATCTCTTGGGTGAGATTTACTTATT : 8241
+
+  332 : eIleSerSerIleGlyTrpTrpGlyGlySerSerIleLeuValGlyGlyLeuSerPheMetA :  352
+        ||||||||||||||||!! |||||||||||||||:!!|||||||||||||||||||||!!:|
+        eIleSerSerIleGly***TrpGlyGlySerSerLeuLeuValGlyGlyLeuSerPheIleA
+ 8240 : TATCTCGTCGATTGGGTGATGGGGGGGCAGCTCCCTCCTCGTGGGGGGGCTTTCTTTTATAG : 8178
+
+  353 : laGlyAlaTyrAsnLeuPheLeuPheValSerThrGlnHisGlyThrAspAsnSerLeuMet :  372
+        ||||||||||||||||||||||||||||||||||||||||||||||||||!:!! !|||  !
+        laGlyAlaTyrAsnLeuPheLeuPheValSerThrGlnHisGlyThrAspSerPheLeuSer
+ 8177 : CAGGGGCCTATAACTTGTTTTTATTTGTGTCTACCCAACATGGAACAGACAGCTTCTTATCG : 8118
+
+  373 : SerSerMetSerAspCysSerPheArgGluHisLeuValLeuPheLeuHisMetValProPh :  393
+        !:!!!!|||.!!||||||||||||||||||||||||||||||||||||||||||!.!|||||
+        AsnArgMetGlyAspCysSerPheArgGluHisLeuValLeuPheLeuHisMetAlaProPh
+ 8117 : AATAGAATGGGGGACTGTTCTTTTCGTGAGCATCTGGTGTTATTCTTACACATGGCACCATT : 8055
+
+  394 : eIlePheLeu :  396
+        ||||.!!|||
+        eIleLeuLeu
+ 8054 : TATTCTTCTT : 8044
+
+vulgar: mtdna_D8_119; 0 396 . NC_000844.1 9231 8043 - 1738 M 396 1188
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	8044	9231	1738	-	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 86.11 ; similarity 92.93
+NC_000844.1	exonerate:protein2genome:local	cds	8044	9231	.	-	.	
+NC_000844.1	exonerate:protein2genome:local	exon	8044	9231	.	-	.	insertions 0 ; deletions 0 ; identity 86.11 ; similarity 92.93
+NC_000844.1	exonerate:protein2genome:local	similarity	8044	9231	1738	-	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 9232 1 1188
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 11608-12483; -; nad1
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome:[revcomp]
+         Model: protein2genome:local
+     Raw score: 1347
+   Query range: 0 -> 292
+  Target range: 12417 -> 11541
+
+     1 : ValIleLeuPheLeuValIleValValCysValLeuValGlyValAlaPhePheThrLeu :    20
+         ||||||||||||||||||:!:|||||||||||||||||||||||||||||||||||||||
+         ValIleLeuPheLeuValValValValCysValLeuValGlyValAlaPhePheThrLeu
+ 12417 : GTGATTCTCTTCTTAGTTGTGGTGGTGTGTGTTCTCGTGGGGGTAGCGTTTTTCACTTTA : 12360
+
+    21 : PheGluArgLysLeuLeuGlyTyrIleGlnLeuArgLysGlyProAsnLysValGlyIle :    40
+         |||||||||||||||||||||||||||||||||||||||||||||||||||||||||:!:
+         PheGluArgLysLeuLeuGlyTyrIleGlnLeuArgLysGlyProAsnLysValGlyLeu
+ 12359 : TTTGAGCGTAAGCTATTAGGGTACATTCAGTTGCGTAAGGGGCCTAATAAAGTAGGCTTG : 12300
+
+    41 : GlyGlyIlePheGlnProPheSerAspAlaIleLysLeuPheSerLysGluHisIleSer :    60
+         ||||||:!!.!!||||||||||||||||||||||||||||||||||||||||||:!!|||
+         GlyGlyValLeuGlnProPheSerAspAlaIleLysLeuPheSerLysGluHisValSer
+ 12299 : GGGGGGGTTCTTCAGCCCTTTTCTGACGCAATTAAATTGTTTTCAAAGGAGCACGTTTCC : 12240
+
+    61 : ProSerThrSerAsnTyrLeuAlaPheLeuValAlaProCysPheSerLeuGlyLeuSer :    80
+         ||||||||||||||||||! !|||||||||:!!|||||||||||||||||||||||||||
+         ProSerThrSerAsnTyrSerAlaPheLeuIleAlaProCysPheSerLeuGlyLeuSer
+ 12239 : CCTTCCACCTCTAACTATTCAGCCTTTTTAATTGCCCCTTGTTTTAGTTTGGGGCTATCT : 12180
+
+    81 : LeuPheMetTrpLeuSerIleProSerPhePheAsnLeuLeuSerPheAsnLysSerVal :   100
+         |||.!!!!:||||||!!!||||||||||||||||||||||||||||||||||||||||||
+         LeuLeuIleTrpLeuArgIleProSerPhePheAsnLeuLeuSerPheAsnLysSerVal
+ 12179 : CTTCTTATATGGCTAAGAATTCCTTCTTTTTTTAATTTACTCTCTTTTAATAAGAGCGTA : 12120
+
+   101 : LeuPhePheLeuCysGlyLeuGlyValGlyValTyrGlyLeuLeuAlaAlaGlyTrpSer :   120
+         |||||||||||||||||||||||||||||||||||||||||||||||||||||||||!!!
+         LeuPhePheLeuCysGlyLeuGlyValGlyValTyrGlyLeuLeuAlaAlaGlyTrpArg
+ 12119 : CTCTTTTTCTTATGCGGTCTAGGCGTTGGTGTTTATGGGCTTCTCGCGGCAGGGTGGAGA : 12060
+
+   121 : SerAsnSerLysTyrSerLeuIleGlyCysLeuArgGlyValAlaGlnThrValSerTyr :   140
+         ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+         SerAsnSerLysTyrSerLeuIleGlyCysLeuArgGlyValAlaGlnThrValSerTyr
+ 12059 : TCTAATTCTAAGTATTCTCTTATTGGATGTCTACGAGGAGTAGCCCAGACTGTTTCTTAC : 12000
+
+   141 : GluValSerLeuValLeuIleLeuPheThrProLeuValValThrLeuCysTyrGluLeu :   160
+         ||||||!!!||||||||||||||||||||||||||||||||||||:!! ! |||||||||
+         GluValArgLeuValLeuIleLeuPheThrProLeuValValThrValGlyTyrGluLeu
+ 11999 : GAGGTAAGATTAGTTTTAATTTTGTTTACCCCTTTAGTAGTAACTGTGGGGTATGAGTTG : 11940
+
+   161 : GlySerPheSerPhePheGlnGluAsnPheTrpPheIlePheIlePheProSerAlaGly :   180
+         ||||||||||||! !||||||||||||!!.|||||||||||||||||||||:!!||||||
+         GlySerPheSerSerPheGlnGluAsnLeuTrpPheIlePheIlePheProAlaAlaGly
+ 11939 : GGCAGTTTCTCTTCTTTTCAAGAAAATTTATGGTTTATTTTTATCTTTCCTGCCGCAGGA : 11880
+
+   181 : LeuIleTrpPheIleSerCysLeuAlaGluThrAsnArgThrProPheAspPheAlaGlu :   200
+         ||||||!! |||||||||||||||||||||||||||||||||||||||||||||||||||
+         LeuIle***PheIleSerCysLeuAlaGluThrAsnArgThrProPheAspPheAlaGlu
+ 11879 : TTAATTTGATTTATTTCTTGTCTTGCTGAGACTAATCGTACCCCATTCGATTTTGCTGAG : 11820
+
+   201 : GlyGluSerGluLeuValSerGlyTyrAsnThrGluTyrSerSerGlyGlyPheAlaLeu :   220
+         |||||||||||||||||||||||||||||||||||||||!!!||||||||||||||||||
+         GlyGluSerGluLeuValSerGlyTyrAsnThrGluTyrArgSerGlyGlyPheAlaLeu
+ 11819 : GGGGAGTCTGAGCTTGTGTCGGGTTATAACACGGAGTACAGAAGTGGGGGGTTTGCTTTA : 11760
+
+   221 : IleMetLeuAlaGluTyrThrSerIleLeuPheLeuSerPheLeuPheSerIleIlePhe :   240
+         |||!!:|||||||||||||||!!!|||||||||:!!|||||||||||||||:!!||||||
+         IleIleLeuAlaGluTyrThrArgIleLeuPheIleSerPheLeuPheSerValIlePhe
+ 11759 : ATTATATTAGCGGAGTATACTAGAATCTTATTTATATCTTTTCTATTTAGTGTCATTTTT : 11700
+
+   241 : LeuGlyGlyAlaPheSerPheLeuValValIleSerPheSerValMetAlaPheIlePhe :   260
+         |||||||||! !! !||||||!!!|||:!!:!!||||||.!!|||!!:||||||||||||
+         LeuGlyGlyAspCysSerPhePheValLeuValSerPheGlyValIleAlaPheIlePhe
+ 11699 : TTGGGGGGTGATTGTTCTTTTTTTGTGCTAGTCTCTTTTGGAGTAATAGCTTTTATTTTT : 11640
+
+   261 : ValTrpValArgGlyThrLeuProArgPheArgTyrAspLysLeuMetTyrLeuAlaTrp :   280
+         |||!! |||||||||||||||||||||||||||||||||||||||!!:||||||||||||
+         Val***ValArgGlyThrLeuProArgPheArgTyrAspLysLeuIleTyrLeuAlaTrp
+ 11639 : GTTTGAGTTCGAGGGACTCTTCCCCGATTTCGGTACGATAAATTAATATATTTAGCTTGG : 11580
+
+   281 : LysPhePheLeuProPheSerIleSerTyrLeuVal :   292
+         ||||||||||||||||||||||||||||||||||||
+         LysPhePheLeuProPheSerIleSerTyrLeuVal
+ 11579 : AAGTTTTTCTTACCTTTTTCTATTTCGTATTTAGTA : 11542
+
+vulgar: mtdna_D8_119; 0 292 . NC_000844.1 12417 11541 - 1347 M 292 876
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	11542	12417	1347	-	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 89.04 ; similarity 94.18
+NC_000844.1	exonerate:protein2genome:local	cds	11542	12417	.	-	.	
+NC_000844.1	exonerate:protein2genome:local	exon	11542	12417	.	-	.	insertions 0 ; deletions 0 ; identity 89.04 ; similarity 94.18
+NC_000844.1	exonerate:protein2genome:local	similarity	11542	12417	1347	-	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 12418 1 876
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 6334-7989; -; nad5
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome:[revcomp]
+         Model: protein2genome:local
+     Raw score: 2394
+   Query range: 0 -> 552
+  Target range: 7915 -> 6259
+
+    1 : LeuIleAsnLeuMetPheIleAlaGlyPheValGlyValPheLeuSerSerGlyLysThrSe :   21
+        |||:!!||||||!!:|||||||||||||||..!||||||||||||||||||! !  !|||||
+        LeuValAsnLeuIlePheIleAlaGlyPheThrGlyValPheLeuSerSerGluGlyThrSe
+ 7915 : CTGGTTAACCTCATATTTATTGCCGGGTTCACAGGGGTCTTTTTGAGTTCTGAGGGGACGTC : 7855
+
+   22 : rIlePhePheGluTrpPheLeuGlyGlySerSerValAsnPheSerMetIlePheLeuValA :   42
+        |||||||||||||!! ||||||||||||!!!!!!|||||||||!!!!!:|||||||||:!!|
+        rIlePhePheGlu***PheLeuGlyGlyArgArgValAsnPheArgIleIlePheLeuLeuA
+ 7854 : AATTTTCTTTGAGTGATTTTTAGGGGGGAGAAGAGTTAACTTTAGAATAATTTTTCTTTTAG : 7792
+
+   43 : spSerValSerCysPhePheLeuAlaValValLeuCysIleSerGlyAsnValValTrpTyr :   62
+        ||!!!:!!||||||||||||||||||||||||||||||||||||||||||||||||!! |||
+        spArgMetSerCysPhePheLeuAlaValValLeuCysIleSerGlyAsnValVal***Tyr
+ 7791 : ATAGAATGAGTTGTTTTTTTCTTGCTGTGGTTTTGTGTATTTCTGGTAATGTAGTCTGATAC : 7732
+
+   63 : SerLysSerTyrMetValLeuAspProAsnAlaAsnArgPheIleLeuLeuValMetGlyPh :   83
+        |||||||||||||||!.!||||||||||||||||||||||||||||||||||||:!:|||||
+        SerLysSerTyrMetAlaLeuAspProAsnAlaAsnArgPheIleLeuLeuValLeuGlyPh
+ 7731 : AGTAAAAGTTACATGGCTTTAGACCCTAATGCCAATCGGTTCATCCTCTTAGTTTTAGGTTT : 7669
+
+   84 : eValAlaSerMetAlaIleLeuIleLeuSerProAsnIleLeuSerIleLeuLeuGlyTrpA :  104
+        |||||||||||||||||||||||||||||||||||||||||||!!!||||||||||||||||
+        eValAlaSerMetAlaIleLeuIleLeuSerProAsnIleLeuArgIleLeuLeuGlyTrpA
+ 7668 : TGTTGCTTCTATGGCTATCTTAATTCTAAGTCCTAATATCTTAAGAATCCTACTAGGATGGG : 7606
+
+  105 : spGlyLeuGlyLeuIleSerTyrGlyLeuValIleTyrTyrProSerLysLysSerSerSer :  124
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        spGlyLeuGlyLeuIleSerTyrGlyLeuValIleTyrTyrProSerLysLysSerSerSer
+ 7605 : ATGGGTTGGGGCTAATTTCTTACGGTCTAGTAATTTATTATCCTTCTAAAAAGTCAAGTAGC : 7546
+
+  125 : AlaGlyMetIleThrValLeuSerAsnArgValGlyAspValCysIleLeuLeuSerIleAl :  145
+        ||||||!!:|||||||||||||||||||||||||||||||||||||||||||||||||||||
+        AlaGlyIleIleThrValLeuSerAsnArgValGlyAspValCysIleLeuLeuSerIleAl
+ 7545 : GCGGGTATAATCACAGTCTTATCTAACCGGGTGGGGGATGTGTGCATCTTACTCTCAATCGC : 7483
+
+  146 : aTrpPheValSerLeuGlyAspPheAsnPheSerIleTrpAlaPhePheLysAspValGluP :  166
+        |!! |||||||||:!!|||||||||||||||!!!||||||||||||!:!!!.:!!|||||||
+        a***PheValSerValGlyAspPheAsnPheArgIleTrpAlaPheTyrAsnAsnValGluP
+ 7482 : TTGATTCGTATCAGTAGGAGATTTTAATTTTAGAATTTGGGCCTTTTATAATAATGTAGAGT : 7420
+
+  167 : heSerAsnTrpValSerPheLeuValLeuLeuAlaAlaMetThrLysSerAlaGlnIlePro :  186
+        ||!!!||||||||| !!.!!||||||||||||||||||!!:||||||!!!||||||||||||
+        heArgAsnTrpValProLeuLeuValLeuLeuAlaAlaIleThrLysArgAlaGlnIlePro
+ 7419 : TTAGAAATTGGGTCCCTCTTCTTGTATTACTGGCCGCTATAACTAAAAGAGCTCAAATTCCC : 7360
+
+  187 : PheSerAlaTrpLeuProAlaAlaMetAlaAlaProThrProValSerAlaLeuValHisSe :  207
+        |||||||||!! ||||||||||||!!:|||||||||||||||||||||||||||||||||||
+        PheSerAla***LeuProAlaAlaIleAlaAlaProThrProValSerAlaLeuValHisSe
+ 7359 : TTCTCTGCTTGATTACCTGCTGCGATAGCGGCTCCAACCCCAGTTTCTGCTTTGGTACACTC : 7297
+
+  208 : rSerThrLeuValThrAlaGlyValTyrLeuLeuIleArgPheSerPheIleLeuGlyGluT :  228
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        rSerThrLeuValThrAlaGlyValTyrLeuLeuIleArgPheSerPheIleLeuGlyGluT
+ 7296 : CTCTACTTTAGTCACTGCTGGGGTGTATCTATTAATTCGTTTCTCTTTTATCTTAGGAGAAA : 7234
+
+  229 : hrCysSerAlaPheLeuLeuPheIleSerIleMetThrMetPheMetSerGlyValValAla :  248
+        |||||||||||.!.||||||||||||||||||!!:|||||||||||||||||||||||||||
+        hrCysSerAlaLeuLeuLeuPheIleSerIleIleThrMetPheMetSerGlyValValAla
+ 7233 : CTTGTTCAGCACTGTTACTATTTATTTCTATTATAACCATGTTCATGTCGGGGGTTGTAGCT : 7174
+
+  249 : IlePheGluTyrAspLeuLysLysIleIleAlaLeuSerThrLeuSerGlnLeuGlyMetMe :  269
+        |||||||||||||||||||||||||||||||||||||||||||||!!!||||||||||||!!
+        IlePheGluTyrAspLeuLysLysIleIleAlaLeuSerThrLeuArgGlnLeuGlyMetIl
+ 7173 : ATCTTTGAGTATGATCTTAAAAAAATTATTGCATTGTCTACCCTTAGACAGTTAGGGATGAT : 7111
+
+  270 : tMetPheSerIleSerLeuGlyLeuPheGluLeuAlaPhePheHisLeuLeuThrHisAlaL :  290
+        :||||||||||||||||||||||||!:!||||||||||||||||||||||||||||||||||
+        eMetPheSerIleSerLeuGlyLeuTyrGluLeuAlaPhePheHisLeuLeuThrHisAlaL
+ 7110 : AATGTTCTCCATTTCTTTGGGCCTCTACGAGTTGGCCTTCTTCCATTTATTAACACATGCTC : 7048
+
+  291 : euPheLysAlaLeuLeuPheLeuCysAlaGlyIleLeuIleHisGlyAlaGlyAsnThrGln :  310
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        euPheLysAlaLeuLeuPheLeuCysAlaGlyIleLeuIleHisGlyAlaGlyAsnThrGln
+ 7047 : TATTTAAGGCCCTGCTTTTTCTTTGTGCAGGGATTCTTATTCACGGGGCCGGGAATACCCAG : 6988
+
+  311 : AspIleArgSerPheGlyGlyLeuSerLeuAsnPheProLeuValThrValCysMetAsnLe :  331
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||!!:|||||
+        AspIleArgSerPheGlyGlyLeuSerLeuAsnPheProLeuValThrValCysIleAsnLe
+ 6987 : GATATTCGATCTTTTGGGGGGCTTAGCTTGAATTTTCCGTTGGTTACGGTGTGCATAAATCT : 6925
+
+  332 : uAlaAsnLeuSerLeuCysGlyValProPheLeuAlaGlyPheTyrSerLysAspLeuIleV :  352
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        uAlaAsnLeuSerLeuCysGlyValProPheLeuAlaGlyPheTyrSerLysAspLeuIleV
+ 6924 : AGCTAATTTATCTCTTTGTGGGGTGCCTTTCTTAGCGGGGTTTTACTCTAAGGATTTAATTG : 6862
+
+  353 : alGluLeuAlaCysGlnTyrSerTrpGlyIlePheIleLeuLeuMetMetPheIleCysLeu :  372
+        |||||||||||||||||||||||||||||||||||:!!|||||||||!!:||||||||||||
+        alGluLeuAlaCysGlnTyrSerTrpGlyIlePheValLeuLeuMetIlePheIleCysLeu
+ 6861 : TAGAGCTTGCTTGTCAATATTCTTGGGGAATTTTTGTCTTACTTATGATATTTATTTGTCTC : 6802
+
+  373 : MetLeuThrValLeuTyrSerValArgLeuThrTyrLeuSerPheValGlyLeuTyrGlyGl :  393
+        !  ||||||||||||||||||||||||||||||||||||||||||||||||! !||||||||
+        ArgLeuThrValLeuTyrSerValArgLeuThrTyrLeuSerPheValGlyProTyrGlyGl
+ 6801 : AGATTAACAGTTCTTTACTCAGTTCGGCTTACTTACTTAAGTTTTGTTGGCCCATACGGGGG : 6739
+
+  394 : yGlyThrPheIleSerValCysGluSerAspHisSerLeuThrGlyProValValThrLeuS :  414
+        |||||||!  |||||||||||||||||||||:!!||||||..!||||||||||||! !||||
+        yGlyThrSerIleSerValCysGluSerAspTyrSerLeuValGlyProValValIleLeuS
+ 6738 : GGGAACTTCGATTTCTGTTTGCGAGTCGGATTATTCGTTAGTTGGGCCGGTGGTGATTCTTT : 6676
+
+  415 : erLeuIleSerLeuIleSerGlyProIleLeuGlyTrpLeuSerPheSerAlaProValLeu :  434
+        ||!!!! !||||||:!!||||||||||||||| !!||||||!:!||| !!||||||||||||
+        erPheThrSerLeuValSerGlyProIleLeuArgTrpLeuAsnPheProAlaProValLeu
+ 6675 : CTTTTACTTCCCTTGTTTCAGGCCCAATCTTGAGATGGCTTAATTTCCCCGCCCCGGTTCTG : 6616
+
+  435 : IlePheLeuProValPheLeuLysTrpAlaAlaLeuPhePheValSerValSerLeuLeuVa :  455
+        |||||||||||||||||||||||||||!.!|||||||||||||||.!!||||||||||||||
+        IlePheLeuProValPheLeuLysTrpGlyAlaLeuPhePheValGlyValSerLeuLeuVa
+ 6615 : ATTTTCTTGCCTGTATTTTTAAAGTGGGGGGCTCTCTTTTTTGTTGGTGTTTCCCTGCTGGT : 6553
+
+  456 : lMetLeuSerLeuGlnArgLeuAlaTyrPheTyrLysTrpGlyValAlaLysLysPheSerG :  476
+        |!!:|||||||||||| !!|||.!!|||! !||||||||||||!.!!.!!:!||||||!!!|
+        lIleLeuSerLeuGlnGlyLeuThrTyrSerTyrLysTrpGlyAlaValArgLysPheArgG
+ 6552 : GATACTAAGTTTACAGGGGTTAACCTACTCTTATAAATGGGGGGCAGTTAGGAAGTTTAGAG : 6490
+
+  477 : lyLeuMetTrpPheLeuProTrpLeuThrGlyGlnGlyPheSerMetLysThrLeuLysAsn :  496
+        |||||!!:||||||||||||!! |||||||||||||||||||||||||||||||||||||||
+        lyLeuIleTrpPheLeuPro***LeuThrGlyGlnGlyPheSerMetLysThrLeuLysAsn
+ 6489 : GTTTAATATGGTTTCTTCCTTGACTGACAGGCCAAGGTTTTTCAATGAAAACTTTAAAGAAT : 6430
+
+  497 : AlaAspArgLeuLeuSerValTyrAspGlnGlyTrpLeuGluTyrTyrSerSerLysGlyLe :  517
+        ||||||!.!||||||!.!:!!||||||||||||!! ||||||!:!||||||!!!||||||||
+        AlaAspHisLeuLeuLysIleTyrAspGlnGly***LeuGluPheTyrSerArgLysGlyLe
+ 6429 : GCGGACCACCTCTTAAAGATTTATGACCAAGGTTGATTGGAGTTTTATTCAAGAAAAGGCTT : 6367
+
+  518 : uGluValValSerAsnSerValAsnLeuLeuAsnLeuLysPheGlnTyrAsnSerLeuLysL :  538
+        ||||||||||.!!...!.!||||||  !||||||||||||||||||:!!!:!||||||||||
+        uGluValValGlyGlyLysValAsnThrLeuAsnLeuLysPheGlnHisSerSerLeuLysL
+ 6366 : GGAAGTTGTAGGGGGGAAGGTTAACACACTCAATTTAAAATTTCAGCATAGTAGTTTGAAGC : 6304
+
+  539 : euHisPheLeuIlePheLeuLeuTrpLeuPheLeuCysLeuIle :  552
+        |||||||||||||||||||||||!! ||||||||||||!!!|||
+        euHisPheLeuIlePheLeuLeu***LeuPheLeuCysPheIle
+ 6303 : TCCACTTTCTAATTTTTTTACTTTGACTTTTCTTATGTTTTATT : 6260
+
+vulgar: mtdna_D8_119; 0 552 . NC_000844.1 7915 6259 - 2394 M 552 1656
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	6260	7915	2394	-	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 86.05 ; similarity 91.12
+NC_000844.1	exonerate:protein2genome:local	cds	6260	7915	.	-	.	
+NC_000844.1	exonerate:protein2genome:local	exon	6260	7915	.	-	.	insertions 0 ; deletions 0 ; identity 86.05 ; similarity 91.12
+NC_000844.1	exonerate:protein2genome:local	similarity	6260	7915	2394	-	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 7916 1 1656
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 5592-5924; +; nad3
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome
+         Model: protein2genome:local
+     Raw score: 476
+   Query range: 0 -> 109
+  Target range: 5514 -> 5841
+
+    1 : IlePheThrProLeuIlePheMetIleSerSerValValLeuIleLeuSerLeuIleLeuSe :   21
+        ||||||||||||||||||!!.!  |||!!!||||||||||||:!!|||||||||  !|||!!
+        IlePheThrProLeuIleLeuThrIleArgSerValValLeuValLeuSerLeuAlaLeuAr
+ 5515 : ATTTTTACCCCCCTAATTTTGACAATTAGATCTGTGGTCTTGGTCCTTTCTCTAGCTCTCAG : 5575
+
+   22 : rLysLysAsnLysSerAsnArgGluLysSerSerProPheGluCysGlyPheAspAlaAsnS :   42
+        !||||||!:!|||! !||||||||||||||||||||||||||||||||||||||||||||||
+        gLysLysSerLysIleAsnArgGluLysSerSerProPheGluCysGlyPheAspAlaAsnS
+ 5576 : AAAAAAAAGTAAAATAAATCGAGAGAAGTCTTCGCCTTTTGAATGTGGGTTTGACGCAAATT : 5638
+
+   43 : erAsnGlnArgLeuProPheSerLeuArgPhePheLeuValThrIleIlePheLeuIlePhe :   62
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        erAsnGlnArgLeuProPheSerLeuArgPhePheLeuValThrIleIlePheLeuIlePhe
+ 5639 : CTAACCAGCGCCTTCCTTTCTCGCTCCGTTTTTTCTTAGTAACAATTATCTTTTTAATCTTT : 5698
+
+   63 : AspValGluIleValIleLeuPheProAlaIleGlnSerIlePheThrSerGlnGluLeuTy :   83
+        |||||||||||||||||||||||||||||||||||||||||||||||||||||||||!!!||
+        AspValGluIleValIleLeuPheProAlaIleGlnSerIlePheThrSerGlnGluPheTy
+ 5699 : GATGTCGAGATTGTTATCCTGTTCCCTGCTATTCAAAGCATTTTTACCTCACAAGAATTTTA : 5761
+
+   84 : rTrpAsnPheIlePheIleSerPheLeuIleIleLeuLeuGlyGlyLeuPheHisGluTrpL :  104
+        |!! ||||||||||||||||||||||||||||||||||||||||||||||||||||||!! |
+        r***AsnPheIlePheIleSerPheLeuIleIleLeuLeuGlyGlyLeuPheHisGlu***L
+ 5762 : CTGAAATTTTATTTTTATTTCTTTTCTAATTATTTTGTTGGGGGGACTTTTTCATGAATGAA : 5824
+
+  105 : ysGlnGlySerLeuAsn :  109
+        |||||||||||||||||
+        ysGlnGlySerLeuAsn
+ 5825 : AACAAGGAAGTCTTAAC : 5841
+
+vulgar: mtdna_D8_119; 0 109 . NC_000844.1 5514 5841 + 476 M 109 327
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	5515	5841	476	+	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 89.91 ; similarity 91.74
+NC_000844.1	exonerate:protein2genome:local	cds	5515	5841	.	+	.	
+NC_000844.1	exonerate:protein2genome:local	exon	5515	5841	.	+	.	insertions 0 ; deletions 0 ; identity 89.91 ; similarity 91.74
+NC_000844.1	exonerate:protein2genome:local	similarity	5515	5841	476	+	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 5515 1 327
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 3078-3743; +; cox2
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome
+         Model: protein2genome:local
+     Raw score: 1037
+   Query range: 0 -> 221
+  Target range: 3003 -> 3666
+
+    1 : MetAlaThrTrpAlaGlnIleGlyPheGlnAsnSerAlaSerProLeuMetGluGlnLeuIl :   21
+        |||||||||!! |||||||||||||||||||||!!!||||||||||||!!:|||||||||||
+        MetAlaThr***AlaGlnIleGlyPheGlnAsnArgAlaSerProLeuIleGluGlnLeuIl
+ 3004 : ATGGCAACATGAGCACAAATTGGATTCCAAAATAGAGCATCCCCTCTAATAGAACAACTTAT : 3064
+
+   22 : ePhePheHisAspHisAlaLeuLeuIleLeuIleLeuIleThrThrLeuValGlyTyrPheM :   42
+        |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||!
+        ePhePheHisAspHisAlaLeuLeuIleLeuIleLeuIleThrThrLeuValGlyTyrPheI
+ 3065 : CTTTTTCCACGACCACGCCCTTCTTATTCTTATTTTGATTACCACTCTAGTAGGATATTTTA : 3127
+
+   43 : etLeuSerLeuIleThrAsnLysPheValAsnArgTyrLeuLeuAspGlyGlnMetIleGlu :   62
+        !:|||||||||:!!|||||||||||||||||||||||||||||||||||||||!!:||||||
+        leLeuSerLeuValThrAsnLysPheValAsnArgTyrLeuLeuAspGlyGlnIleIleGlu
+ 3128 : TACTTAGTTTAGTCACCAACAAATTTGTCAACCGTTACTTGCTTGACGGACAGATAATCGAA : 3187
+
+   63 : IleIleTrpThrValLeuProAlaValIleLeuIleIleLeuAlaLeuProSerLeuArgLe :   83
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        IleIleTrpThrValLeuProAlaValIleLeuIleIleLeuAlaLeuProSerLeuArgLe
+ 3188 : ATTATCTGGACTGTTCTTCCTGCTGTTATTTTAATCATCCTAGCCCTGCCCTCATTACGGCT : 3250
+
+   84 : uLeuTyrLeuIleAspGluThrThrGluProSerIleThrLeuLysThrValGlyHisGlnT :  104
+        |||||||||||||||||||||||||||||||!!!|||||||||||||||||||||||||||!
+        uLeuTyrLeuIleAspGluThrThrGluProArgIleThrLeuLysThrValGlyHisGln*
+ 3251 : CCTCTACCTCATTGATGAGACCACAGAACCCAGAATCACCTTAAAGACTGTAGGCCATCAAT : 3313
+
+  105 : rpTyrTrpSerTyrGluTyrSerAspPheLysAspIleGluPheAspSerTyrMetThrPro :  124
+        ! |||!! ||||||||||||||||||||||||||||||||||||||||||||||||! !|||
+        **Tyr***SerTyrGluTyrSerAspPheLysAspIleGluPheAspSerTyrMetMetPro
+ 3314 : GATACTGAAGTTATGAATATTCTGATTTCAAGGATATCGAATTTGATTCTTACATGATGCCA : 3373
+
+  125 : SerAsnAspLeuGluAsnGlyHisPheArgLeuLeuGluValAspAsnArgValIleLeuPr :  145
+        |||||||||||||||!!.|||!!.||||||||||||||||||||||||||||||||||||||
+        SerAsnAspLeuGluLysGlyGlnPheArgLeuLeuGluValAspAsnArgValIleLeuPr
+ 3374 : TCGAACGACCTAGAAAAAGGGCAATTCCGCCTTCTTGAAGTAGACAACCGAGTGATTTTACC : 3436
+
+  146 : oTyrLeuThrGlnValArgLeuLeuValThrAlaGlyAspValIleHisSerTrpThrIleP :  166
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||!! |||||||
+        oTyrLeuThrGlnValArgLeuLeuValThrAlaGlyAspValIleHisSer***ThrIleP
+ 3437 : ATACCTCACCCAGGTACGTCTACTAGTCACAGCAGGAGACGTAATCCACTCCTGAACAATCC : 3499
+
+  167 : roSerLeuGlyIleLysAlaAspAlaIleProGlyArgLeuAsnGlnLeuAsnValPhePhe :  186
+        ||||||||||||||||||||||||||:!!|||||||||||||||||||||||||||||||||
+        roSerLeuGlyIleLysAlaAspAlaValProGlyArgLeuAsnGlnLeuAsnValPhePhe
+ 3500 : CCAGTTTAGGAATCAAAGCTGACGCCGTACCTGGTCGTTTAAATCAACTTAACGTATTTTTT : 3559
+
+  187 : AsnArgProGlyValPheTyrGlyGlnCysSerGluIleCysGlyAlaAsnHisSerPheMe :  207
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||!!
+        AsnArgProGlyValPheTyrGlyGlnCysSerGluIleCysGlyAlaAsnHisSerPheIl
+ 3560 : AATCGACCAGGTGTCTTTTATGGTCAATGCTCCGAAATTTGTGGGGCCAATCATAGTTTTAT : 3622
+
+  208 : tProIleThrValGluAlaValSerProThrAspPheLeuSer :  221
+        :|||||||||||||||||||||!:!|||.!!||||||||||||
+        eProIleThrValGluAlaValAsnProAlaAspPheLeuSer
+ 3623 : ACCCATCACTGTAGAGGCGGTTAACCCCGCGGACTTCCTAAGT : 3666
+
+vulgar: mtdna_D8_119; 0 221 . NC_000844.1 3003 3666 + 1037 M 221 663
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	3004	3666	1037	+	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 92.31 ; similarity 95.48
+NC_000844.1	exonerate:protein2genome:local	cds	3004	3666	.	+	.	
+NC_000844.1	exonerate:protein2genome:local	exon	3004	3666	.	+	.	insertions 0 ; deletions 0 ; identity 92.31 ; similarity 95.48
+NC_000844.1	exonerate:protein2genome:local	similarity	3004	3666	1037	+	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 3004 1 663
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 4051-4719; +; atp6
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome
+         Model: protein2genome:local
+     Raw score: 941
+   Query range: 0 -> 223
+  Target range: 3975 -> 4644
+
+    1 : MetMetAlaAsnLeuPheSerIlePheAspProSerSerMetLeuSerLeuProLeuAsnTr :   21
+        |||!!:|||||||||||||||||||||||||||||||||!!:|||!!!||||||||||||!!
+        MetIleAlaAsnLeuPheSerIlePheAspProSerSerIleLeuThrLeuProLeuAsn**
+ 3976 : ATGATAGCTAATTTATTCTCTATCTTTGACCCCTCCTCTATATTAACCCTCCCTTTAAATTG : 4036
+
+   22 : pLeuAlaIleSerValGlyLeuPheAlaLeuProTrpGlyPheTrpValSerThrAsnArgP :   42
+         ||||||:!!! !|||||||||||||||||||||!! ||||||!! :!!!!!||||||||| 
+        *LeuAlaValPheValGlyLeuPheAlaLeuPro***GlyPhe***IleArgThrAsnArgA
+ 4037 : ATTAGCCGTCTTTGTCGGTTTGTTTGCCCTTCCCTGAGGCTTCTGAATTAGAACTAACCGAG : 4099
+
+   43 : roSerLysPhePheSerLeuIleSerAspGlnLeuHisSerGluPheLysThrLeuValGly :   62
+        !!:!!|||||||||!!!|||:!!|||||||||||||||!!!|||||||||||||||||||||
+        laAlaLysPhePheThrLeuValSerAspGlnLeuHisArgGluPheLysThrLeuValGly
+ 4100 : CCGCCAAATTCTTTACTCTAGTCTCAGACCAACTTCACAGAGAATTTAAAACTCTAGTAGGA : 4159
+
+   63 : ValSerGlyAlaGlnGlyHisThrLeuIlePheIleSerLeuPheLeuPheIleLeuPheAs :   83
+        |||.!!||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        ValGlyGlyAlaGlnGlyHisThrLeuIlePheIleSerLeuPheLeuPheIleLeuPheAs
+ 4160 : GTGGGGGGGGCTCAGGGGCACACACTCATTTTTATCTCACTATTTTTATTTATTTTATTTAA : 4222
+
+   84 : nAsnPhePheGlyLeuAlaProTyrValPheThrAlaSerSerHisLeuAlaMetThrLeuA :  104
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        nAsnPhePheGlyLeuAlaProTyrValPheThrAlaSerSerHisLeuAlaMetThrLeuA
+ 4223 : TAATTTTTTTGGGTTGGCACCGTACGTATTCACAGCATCCAGCCACTTAGCTATGACCCTGG : 4285
+
+  105 : laLeuAlaPheProLeuTrpLeuAlaPheIleLeuTyrGlyTrpLeuAsnHisThrAsnHis :  124
+        |||||||||||||||||!! |||||||||||||||||||||!! |||!:!||||||!.!|||
+        laLeuAlaPheProLeu***LeuAlaPheIleLeuTyrGly***LeuSerHisThrThrHis
+ 4286 : CCCTAGCTTTCCCACTTTGACTAGCATTTATTCTTTACGGGTGACTTAGTCACACTACTCAT : 4345
+
+  125 : MetLeuAlaHisLeuValProLeuGlyThrProAlaIleLeuMetProPheMetValLeuIl :  145
+        ||||||||||||||||||||||||||||||||| !!:!!|||!!:|||||||||||||||||
+        MetLeuAlaHisLeuValProLeuGlyThrProProValLeuIleProPheMetValLeuIl
+ 4346 : ATGCTCGCCCATTTAGTTCCTTTAGGGACCCCCCCAGTTTTGATACCCTTTATGGTTCTTAT : 4408
+
+  146 : eGluThrValSerAsnValIleArgProGlyThrLeuAlaValArgLeuAlaAlaAsnMetI :  166
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        eGluThrValSerAsnValIleArgProGlyThrLeuAlaValArgLeuAlaAlaAsnMetI
+ 4409 : CGAAACCGTGAGTAACGTTATCCGCCCTGGGACCTTAGCTGTACGTTTAGCAGCTAATATGA : 4471
+
+  167 : leAlaGlyHisLeuLeuLeuValLeuLeuGlyAsnGlnGlySerMetLeuSerSerSerLeu :  186
+        ||||||||||||||||||||||||||||||||||||||||| !!  !|||||||||||||||
+        leAlaGlyHisLeuLeuLeuValLeuLeuGlyAsnGlnGlyProSerLeuSerSerSerLeu
+ 4472 : TTGCTGGCCACTTACTTCTAGTACTGCTAGGTAATCAAGGGCCCTCGTTGTCCTCTTCTCTT : 4531
+
+  187 : LeuSerIleLeuLeuIleValGlnIleLeuLeuLeuThrLeuGluGlyAlaValAlaIleIl :  207
+        |||!!!|||||||||:!!..!||||||||||||||||||||||||.!!||||||||||||||
+        LeuArgIleLeuLeuValThrGlnIleLeuLeuLeuThrLeuGluSerAlaValAlaIleIl
+ 4532 : TTAAGAATTCTTCTGGTTACCCAGATTTTACTTTTAACGCTAGAAAGCGCGGTAGCTATCAT : 4594
+
+  208 : eGlnSerTyrValPheAlaValLeuAlaThrLeuTyrSerSerGluVal :  223
+        ||||||||||||||||||||||||||||||||||||||||!!!||||||
+        eGlnSerTyrValPheAlaValLeuAlaThrLeuTyrSerArgGluVal
+ 4595 : CCAGTCTTACGTATTTGCTGTTCTGGCGACTCTTTACTCTAGAGAAGTA : 4644
+
+vulgar: mtdna_D8_119; 0 223 . NC_000844.1 3975 4644 + 941 M 223 669
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	3976	4644	941	+	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 86.55 ; similarity 91.93
+NC_000844.1	exonerate:protein2genome:local	cds	3976	4644	.	+	.	
+NC_000844.1	exonerate:protein2genome:local	exon	3976	4644	.	+	.	insertions 0 ; deletions 0 ; identity 86.55 ; similarity 91.93
+NC_000844.1	exonerate:protein2genome:local	similarity	3976	4644	941	+	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 3976 1 669
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 10364-11491; +; cob
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome
+         Model: protein2genome:local
+     Raw score: 1807
+   Query range: 0 -> 376
+  Target range: 10297 -> 11425
+
+     1 : MetAlaThrLeuArgAsnThrHisProLeuMetLysIleLeuAsnSerAlaValValAsp :    20
+         ||||||||||||||||||||||||||||||!!:||||||||||||!!!||||||||||||
+         MetAlaThrLeuArgAsnThrHisProLeuIleLysIleLeuAsnArgAlaValValAsp
+ 10298 : ATGGCAACTCTCCGAAATACTCATCCCCTAATAAAAATTCTTAACAGAGCCGTAGTGGAT : 10355
+
+    21 : LeuProAlaProSerAsnIleSerSerTrpTrpAsnPheGlySerLeuLeuGlyLeuCys :    40
+         ||||||||||||||||||||||||!!!|||!! |||||||||||||||||||||||||||
+         LeuProAlaProSerAsnIleSerArgTrp***AsnPheGlySerLeuLeuGlyLeuCys
+ 10356 : CTCCCTGCACCCTCAAATATCTCAAGATGGTGAAATTTTGGTTCATTGTTAGGTCTCTGT : 10415
+
+    41 : LeuValThrGlnIlePheThrGlyIlePheLeuAlaMetHisTyrThrProHisValGlu :    60
+         ||||||||||||||||||||||||||||||||||||!!:|||||||||||||||||||||
+         LeuValThrGlnIlePheThrGlyIlePheLeuAlaIleHisTyrThrProHisValGlu
+ 10416 : TTAGTTACCCAGATTTTTACTGGAATTTTCCTAGCTATACATTACACCCCCCACGTTGAA : 10475
+
+    61 : LeuAlaPheSerSerValIleHisIleMetArgAspValAsnTyrGlyTrpLeuLeuArg :    80
+         :!!||||||||||||||||||||||||!!:||||||||||||||||||!! |||||||||
+         IleAlaPheSerSerValIleHisIleIleArgAspValAsnTyrGly***LeuLeuArg
+ 10476 : ATAGCATTTTCAAGTGTCATTCATATCATCCGAGATGTAAATTATGGCTGACTTTTACGT : 10535
+
+    81 : ThrIleHisAlaAsnGlyAlaSerPhePhePheIleCysLeuTyrLeuHisValGlyArg :   100
+         ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+         ThrIleHisAlaAsnGlyAlaSerPhePhePheIleCysLeuTyrLeuHisValGlyArg
+ 10536 : ACGATTCATGCTAACGGAGCTTCCTTTTTTTTCATTTGTCTGTATCTCCACGTTGGACGT : 10595
+
+   101 : GlyLeuTyrTyrGlySerTyrLeuPheLeuLeuThrTrpPheSerGlyIleLeuLeuLeu :   120
+         ||||||||||||||||||||||||||||||||||||!! |||||||||||||||||||||
+         GlyLeuTyrTyrGlySerTyrLeuPheLeuLeuThr***PheSerGlyIleLeuLeuLeu
+ 10596 : GGACTATACTACGGGTCTTACTTATTCTTACTCACTTGATTCTCAGGGATTTTACTTCTC : 10655
+
+   121 : LeuLeuThrMetAlaAlaAlaPheMetGlyTyrValLeuProTrpGlyGlnMetSerPhe :   140
+         |||||||||||||||||||||||||||||||||||||||||||||||||||!!:||||||
+         LeuLeuThrMetAlaAlaAlaPheMetGlyTyrValLeuProTrpGlyGlnIleSerPhe
+ 10656 : CTCCTAACTATGGCAGCCGCTTTCATGGGATACGTTCTTCCTTGGGGGCAGATATCTTTC : 10715
+
+   141 : TrpGlyAlaThrValIleThrAsnLeuLeuSerAlaIleProTyrMetGlyAspMetIle :   160
+         |||||||||||||||||||||||||||||||||||||||||||||!!:||||||!!:|||
+         TrpGlyAlaThrValIleThrAsnLeuLeuSerAlaIleProTyrIleGlyAspIleIle
+ 10716 : TGGGGGGCCACTGTAATTACCAATTTACTCTCTGCTATCCCTTATATAGGAGATATAATT : 10775
+
+   161 : ValGlnTrpLeuTrpGlyGlyPheAlaValAspAsnAlaThrLeuAsnArgPhePheSer :   180
+         ||||||!! |||||||||||||||||||||||||||||||||||||||||||||||||||
+         ValGln***LeuTrpGlyGlyPheAlaValAspAsnAlaThrLeuAsnArgPhePheSer
+ 10776 : GTTCAATGACTGTGGGGAGGCTTTGCTGTAGATAATGCGACCCTCAACCGGTTTTTTAGC : 10835
+
+   181 : PheHisPheLeuIleProPheIleIleMetGlyValValIleIleHisLeuLeuPheLeu :   200
+         |||||||||||||||||||||||||||!!:||||||||||||||||||||||||||||||
+         PheHisPheLeuIleProPheIleIleIleGlyValValIleIleHisLeuLeuPheLeu
+ 10836 : TTTCACTTTCTGATCCCCTTCATTATTATAGGAGTAGTTATTATTCACCTCTTGTTCCTC : 10895
+
+   201 : HisGlnThrGlySerAsnAsnProLeuGlyValLysSerAspSerAspLysIleProPhe :   220
+         ||||||||||||||||||||||||||||||:!!|||!!!|||||||||||||||||||||
+         HisGlnThrGlySerAsnAsnProLeuGlyLeuLysArgAspSerAspLysIleProPhe
+ 10896 : CACCAGACAGGGTCAAATAATCCTCTTGGTCTTAAGAGAGATTCTGATAAAATCCCTTTT : 10955
+
+   221 : HisProTyrPheThrIleLysAspLeuValGlyPheLeuPheValLeuSerPheLeuIle :   240
+         ||||||||||||||||||||||||||||||||||||||||||:!!|||!!!|||||||||
+         HisProTyrPheThrIleLysAspLeuValGlyPheLeuPheIleLeuArgPheLeuIle
+ 10956 : CACCCCTACTTTACTATTAAAGATTTAGTAGGATTCCTCTTCATATTAAGATTTTTAATT : 11015
+
+   241 : IleLeuThrLeuLeuAlaProAsnLeuLeuGlyAspProGluAsnPheAsnProAlaAsn :   260
+         ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+         IleLeuThrLeuLeuAlaProAsnLeuLeuGlyAspProGluAsnPheAsnProAlaAsn
+ 11016 : ATTTTAACACTATTAGCCCCTAATTTGCTAGGAGACCCAGAAAACTTTAACCCAGCCAAT : 11075
+
+   261 : ProLeuValThrProValHisIleGlnProGluTrpTyrPheLeuPheAlaTyrAlaIle :   280
+         |||||||||||||||||||||||||||||||||!! ||||||||||||||||||||||||
+         ProLeuValThrProValHisIleGlnProGlu***TyrPheLeuPheAlaTyrAlaIle
+ 11076 : CCTCTGGTTACCCCTGTACATATTCAACCTGAATGATATTTTTTATTTGCCTACGCAATT : 11135
+
+   281 : LeuArgSerIleProAsnLysLeuGlyGlyValLeuAlaLeuLeuLeuSerIleLeuIle :   300
+         ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+         LeuArgSerIleProAsnLysLeuGlyGlyValLeuAlaLeuLeuLeuSerIleLeuIle
+ 11136 : CTTCGATCGATCCCTAATAAGTTGGGGGGGGTTCTAGCCCTTTTATTGTCAATCTTAATC : 11195
+
+   301 : LeuAlaIleMetProIleTrpHisLysSerAsnMetLysGlyLeuGluPheTyrProLeu :   320
+         |||||||||||||||||||||||||||!!!.!.!!:|||||||||||||||||||||!!!
+         LeuAlaIleMetProIleTrpHisLysArgGluIleLysGlyLeuGluPheTyrProPhe
+ 11196 : CTAGCCATCATGCCAATTTGGCATAAGAGAGAAATAAAGGGATTAGAATTTTACCCATTT : 11255
+
+   321 : AsnLysPheLeuPheTrpSerLeuIleGlyThrValPheIleLeuThrTrpIleGlyAla :   340
+         |||||||||||||||!! ||||||||||||||||||||||||||||||!! |||||||||
+         AsnLysPheLeuPhe***SerLeuIleGlyThrValPheIleLeuThr***IleGlyAla
+ 11256 : AATAAGTTTTTATTTTGATCACTAATCGGGACTGTATTTATTTTAACCTGAATCGGAGCA : 11315
+
+   341 : LysProValGluAspProTyrValLeuValGlyGlnLeuPheThrThrMetTyrPheSer :   360
+         |||||||||||||||||||||||||||||||||||||||||||||.!!!!:||||||!!!
+         LysProValGluAspProTyrValLeuValGlyGlnLeuPheThrAlaIleTyrPheArg
+ 11316 : AAGCCTGTAGAAGACCCCTACGTTTTAGTGGGCCAGCTTTTTACCGCCATCTACTTTAGA : 11375
+
+   361 : TyrPheIleLeuAlaProLeuThrLeuLysIleTrpAspLysIleLeu :   376
+         ||||||||||||||||||||||||||||||||||||||||||||||||
+         TyrPheIleLeuAlaProLeuThrLeuLysIleTrpAspLysIleLeu
+ 11376 : TACTTTATTCTAGCCCCTCTTACTTTAAAAATTTGGGATAAAATCCTA : 11425
+
+vulgar: mtdna_D8_119; 0 376 . NC_000844.1 10297 11425 + 1807 M 376 1128
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	10298	11425	1807	+	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 92.55 ; similarity 95.74
+NC_000844.1	exonerate:protein2genome:local	cds	10298	11425	.	+	.	
+NC_000844.1	exonerate:protein2genome:local	exon	10298	11425	.	+	.	insertions 0 ; deletions 0 ; identity 92.55 ; similarity 95.74
+NC_000844.1	exonerate:protein2genome:local	similarity	10298	11425	1807	+	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 10298 1 1128
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 1475-3001; +; cox1
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome
+         Model: protein2genome:local
+     Raw score: 2388
+   Query range: 0 -> 509
+  Target range: 1400 -> 2927
+
+    1 : LeuArgArgTrpLeuPheSerThrAsnHisLysAspIleGlyThrLeuTyrPheIlePheGl :   21
+        |||||||||!! ||||||||||||||||||||||||||||||||||||||||||||||||||
+        LeuArgArg***LeuPheSerThrAsnHisLysAspIleGlyThrLeuTyrPheIlePheGl
+ 1401 : TTGCGACGTTGACTCTTCTCAACTAATCATAAGGACATTGGCACTCTCTATTTTATCTTTGG : 1461
+
+   22 : yIleTrpSerGlyMetValGlyThrAlaLeuSerLeuLeuIleArgAlaGluLeuGlyGlnS :   42
+        ||||!! ||||||!!:|||||||||||||||!!!||||||||||||||||||||||||||||
+        yIle***SerGlyIleValGlyThrAlaLeuArgLeuLeuIleArgAlaGluLeuGlyGlnS
+ 1462 : TATTTGATCAGGGATAGTAGGCACTGCTCTTAGACTTTTAATTCGCGCCGAACTGGGGCAAT : 1524
+
+   43 : erGlySerLeuIleGlyAspAspGlnIleTyrAsnValIleValThrAlaHisAlaPheVal :   62
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        erGlySerLeuIleGlyAspAspGlnIleTyrAsnValIleValThrAlaHisAlaPheVal
+ 1525 : CAGGAAGTTTAATCGGAGACGATCAGATTTATAATGTAATTGTTACCGCCCACGCGTTCGTA : 1584
+
+   63 : MetIlePhePheMetValMetProIleMetIleGlyGlyPheGlyAsnTrpLeuValProLe :   83
+        !!:|||||||||!!:||||||||||||!!:||||||||||||||||||!! |||||||||||
+        IleIlePhePheIleValMetProIleIleIleGlyGlyPheGlyAsn***LeuValProLe
+ 1585 : ATAATTTTTTTTATAGTTATGCCCATCATAATTGGGGGGTTCGGGAACTGATTAGTCCCCCT : 1647
+
+   84 : uMetLeuGlyAlaProAspMetAlaPheProArgLeuAsnAsnLeuSerPheTrpLeuLeuP :  104
+        |!!:||||||||||||||||||||||||||||||||||||||||||!!!|||!! !!!||||
+        uIleLeuGlyAlaProAspMetAlaPheProArgLeuAsnAsnLeuArgPhe***PheLeuP
+ 1648 : TATACTAGGGGCCCCGGATATGGCCTTCCCTCGACTTAATAATTTAAGATTCTGATTTCTTC : 1710
+
+  105 : roProAlaLeuThrLeuLeuLeuValGlyGlyAlaValGluSerGlyAlaGlyThrGlyTrp :  124
+        |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||!! 
+        roProAlaLeuThrLeuLeuLeuValGlyGlyAlaValGluSerGlyAlaGlyThrGly***
+ 1711 : CTCCGGCACTTACACTACTTTTAGTTGGGGGGGCAGTAGAAAGTGGGGCTGGGACAGGGTGA : 1770
+
+  125 : ThrValTyrProProLeuSerAlaGlyIleAlaHisAlaGlyAlaSerValAspLeuSerIl :  145
+        |||||||||||||||||||||||||||||||||||||||||||||||||||||||||!!!||
+        ThrValTyrProProLeuSerAlaGlyIleAlaHisAlaGlyAlaSerValAspLeuArgIl
+ 1771 : ACCGTGTACCCCCCACTCTCGGCTGGGATTGCTCATGCGGGGGCCTCTGTAGATCTAAGAAT : 1833
+
+  146 : ePheSerLeuHisLeuAlaGlyIleSerSerIleLeuGlyAlaValAsnPheIleThrThrI :  166
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        ePheSerLeuHisLeuAlaGlyIleSerSerIleLeuGlyAlaValAsnPheIleThrThrI
+ 1834 : CTTCTCCCTCCATTTGGCGGGTATTTCTTCTATTCTTGGGGCTGTCAACTTTATTACTACTA : 1896
+
+  167 : leIleAsnMetArgSerSerGlyMetSerLeuAspArgIleProLeuPheValTrpAlaVal :  186
+        ||||||||!!:||||||:!!|||!!:|||||||||||||||||||||||||||!! ||||||
+        leIleAsnIleArgSerAlaGlyIleSerLeuAspArgIleProLeuPheVal***AlaVal
+ 1897 : TTATCAATATACGATCGGCTGGGATATCATTAGACCGAATTCCTTTATTTGTGTGAGCAGTG : 1956
+
+  187 : GlyIleThrAlaLeuLeuLeuLeuLeuSerLeuProValLeuAlaGlyAlaIleThrMetLe :  207
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        GlyIleThrAlaLeuLeuLeuLeuLeuSerLeuProValLeuAlaGlyAlaIleThrMetLe
+ 1957 : GGCATTACTGCGTTACTTCTACTATTGAGCCTACCAGTCCTAGCAGGGGCAATTACTATGCT : 2019
+
+  208 : uLeuThrAspArgAsnLeuAsnThrSerPhePheAspProAlaGlyGlyGlyAspProIleL :  228
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        uLeuThrAspArgAsnLeuAsnThrSerPhePheAspProAlaGlyGlyGlyAspProIleL
+ 2020 : TCTTACTGATCGTAACCTCAATACCTCCTTTTTTGACCCTGCAGGAGGGGGAGATCCGATCT : 2082
+
+  229 : euTyrGlnHisLeuPheTrpPhePheGlyHisProGluValTyrIleLeuIleLeuProGly :  248
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        euTyrGlnHisLeuPheTrpPhePheGlyHisProGluValTyrIleLeuIleLeuProGly
+ 2083 : TATACCAGCATTTGTTTTGGTTCTTTGGTCATCCTGAAGTATACATTTTAATTTTACCCGGG : 2142
+
+  249 : PheGlyMetIleSerHisIleIleSerHisGluSerGlyLysLysGluAlaPheGlyThrLe :  269
+        ||||||!!:||||||||||||||||||||||||!!!||||||||||||||||||||||||||
+        PheGlyIleIleSerHisIleIleSerHisGluArgGlyLysLysGluAlaPheGlyThrLe
+ 2143 : TTTGGTATAATTTCTCATATTATTAGCCACGAAAGAGGTAAAAAGGAAGCATTCGGCACGCT : 2205
+
+  270 : uGlyMetIleTyrAlaMetLeuAlaIleGlyValLeuGlyPheValValTrpAlaHisHisM :  290
+        ||||!!:|||||||||!!:||||||||||||||||||||||||||||||||||||||||||!
+        uGlyIleIleTyrAlaIleLeuAlaIleGlyValLeuGlyPheValValTrpAlaHisHisI
+ 2206 : TGGGATAATTTACGCTATACTAGCTATCGGGGTGTTAGGCTTCGTAGTATGGGCCCACCATA : 2268
+
+  291 : etPheThrValGlyMetAspValAspThrArgAlaTyrPheThrAlaAlaThrMetIleIle :  310
+        !:||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        lePheThrValGlyMetAspValAspThrArgAlaTyrPheThrAlaAlaThrMetIleIle
+ 2269 : TATTTACTGTGGGCATGGATGTTGACACACGAGCGTATTTTACTGCAGCTACAATGATTATT : 2328
+
+  311 : AlaValProThrGlyIleLysIlePheSerTrpLeuGlyThrLeuHisGlyThrGlnLeuVa :  331
+        |||||||||||||||||||||||||||!!!!! |||||||||||||||||||||||||||||
+        AlaValProThrGlyIleLysIlePheArg***LeuGlyThrLeuHisGlyThrGlnLeuVa
+ 2329 : GCGGTTCCTACAGGAATTAAGATCTTCAGATGACTTGGCACACTTCACGGAACCCAGCTTGT : 2391
+
+  332 : lPheThrProSerLeuLeuTrpAlaAlaGlyPheValPheLeuPheThrValGlyGlyLeuT :  352
+        |||||||||||||||||||!! ||||||||||||||||||||||||||||||||||||||||
+        lPheThrProSerLeuLeu***AlaAlaGlyPheValPheLeuPheThrValGlyGlyLeuT
+ 2392 : ATTTACCCCTTCTCTCTTGTGAGCGGCAGGGTTTGTGTTTCTGTTTACAGTAGGGGGGCTTA : 2454
+
+  353 : hrGlyValValLeuAlaAsnSerSerIleAspIleIleLeuHisAspThrTyrTyrValVal :  372
+        |||||||||||||||||||||||!!!||||||||||||||||||||||||||||||||||||
+        hrGlyValValLeuAlaAsnSerArgIleAspIleIleLeuHisAspThrTyrTyrValVal
+ 2455 : CTGGGGTAGTTTTAGCCAACTCAAGAATTGACATTATTCTTCATGACACGTACTATGTCGTA : 2514
+
+  373 : AlaHisPheHisTyrValLeuSerMetGlyAlaValPheAlaIlePheAlaGlyValAlaHi :  393
+        ||||||||||||||||||||||||!!:|||||||||||||||||||||||||||||||||||
+        AlaHisPheHisTyrValLeuSerIleGlyAlaValPheAlaIlePheAlaGlyValAlaHi
+ 2515 : GCTCATTTTCACTACGTTTTATCTATAGGGGCAGTATTCGCTATCTTTGCAGGAGTAGCCCA : 2577
+
+  394 : sTrpPheProLeuPheThrGlyLeuThrLeuGlnValArgTrpLeuLysIleHisPhePheT :  414
+        |!! ||||||||||||||||||||||||||||||!.!|||||||||||||||||||||||||
+        s***PheProLeuPheThrGlyLeuThrLeuGlnAlaArgTrpLeuLysIleHisPhePheT
+ 2578 : TTGATTCCCTCTTTTTACCGGGTTAACCTTGCAAGCCCGTTGGTTAAAGATTCACTTCTTTA : 2640
+
+  415 : hrMetPheValGlyValAsnLeuThrPhePheProGlnHisPheLeuGlyLeuAlaGlyMet :  434
+        ||!!:||||||||||||||||||||||||||||||||||||||||||||||||||||||!!:
+        hrIlePheValGlyValAsnLeuThrPhePheProGlnHisPheLeuGlyLeuAlaGlyIle
+ 2641 : CAATATTCGTAGGAGTAAATTTGACCTTTTTTCCGCAACATTTCTTAGGATTAGCAGGTATA : 2700
+
+  435 : ProArgArgTyrSerAspTyrProAspAlaTyrMetThrTrpAsnValIleSerSerValGl :  455
+        |||||||||||||||||||||||||||||||||||||||!! ||||||||||||||||||||
+        ProArgArgTyrSerAspTyrProAspAlaTyrMetThr***AsnValIleSerSerValGl
+ 2701 : CCCCGGCGTTACTCAGACTACCCTGATGCCTATATGACTTGAAACGTTATCTCATCTGTAGG : 2763
+
+  456 : ySerMetIleSerPheValAlaThrLeuGlyPheIlePheIleValTrpGluSerPheValS :  476
+        ||||:!:||||||||||||||||||||||||||||||||||||:!!|||||||||||||||!
+        ySerValIleSerPheValAlaThrLeuGlyPheIlePheIleIleTrpGluSerPheValA
+ 2764 : GTCCGTAATCTCGTTTGTGGCTACCCTGGGGTTTATTTTTATTATCTGGGAGTCTTTTGTAA : 2826
+
+  477 : erLeuArgProThrLeuPheSerThrHisLeuAlaThrSerIleGluTrpGlnHisSerPhe :  496
+        !!||||||||||||||||||||||||||||||:!!||||||||||||!! ||||||||||||
+        rgLeuArgProThrLeuPheSerThrHisLeuSerThrSerIleGlu***GlnHisSerPhe
+ 2827 : GACTGCGACCGACTTTGTTCTCAACACACTTATCAACTTCAATCGAATGACAGCATTCTTTT : 2886
+
+  497 : ProProAlaGluHisSerTyrAsnGluLeuValTyrIle :  509
+        |||||||||||||||||||||||||||||||||!:!|||
+        ProProAlaGluHisSerTyrAsnGluLeuValPheIle
+ 2887 : CCCCCCGCTGAGCATAGTTATAACGAACTAGTATTTATT : 2927
+
+vulgar: mtdna_D8_119; 0 509 . NC_000844.1 1400 2927 + 2388 M 509 1527
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	1401	2927	2388	+	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 92.34 ; similarity 96.07
+NC_000844.1	exonerate:protein2genome:local	cds	1401	2927	.	+	.	
+NC_000844.1	exonerate:protein2genome:local	exon	1401	2927	.	+	.	insertions 0 ; deletions 0 ; identity 92.34 ; similarity 96.07
+NC_000844.1	exonerate:protein2genome:local	similarity	1401	2927	2388	+	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 1401 1 1527
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 304-1155; +; nad2
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome
+         Model: protein2genome:local
+     Raw score: 1189
+   Query range: 0 -> 284
+  Target range: 224 -> 1076
+
+    1 : MetIleIleSerIleValThrSerMetCysPheValIleSerSerProSerLeuPheIleSe :   21
+        !!:||||||||||||||||||!!!!!:|||.!!|||||||||||||||||||||||||||||
+        IleIleIleSerIleValThrArgIleCysLeuValIleSerSerProSerLeuPheIleSe
+  225 : ATAATCATCAGTATCGTAACAAGAATTTGTCTCGTGATTTCTTCTCCTTCTTTATTTATTTC :  285
+
+   22 : rTrpIleGlyLeuGluLeuAsnThrLeuAlaPheLeuProLeuLeuLeuSerLysLysSerL :   42
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        rTrpIleGlyLeuGluLeuAsnThrLeuAlaPheLeuProLeuLeuLeuSerLysLysSerL
+  286 : ATGGATTGGGTTAGAACTCAATACCTTAGCGTTCTTACCCCTCCTTTTATCTAAAAAATCTA :  348
+
+   43 : ysLeuAlaSerGluAlaSerIleLysTyrPheLeuThrGlnThrLeuAlaSerValLeuIle :   62
+        ||||||||!!!|||||||||||||||||||||||||||||||||||||||||||||||||||
+        ysLeuAlaArgGluAlaSerIleLysTyrPheLeuThrGlnThrLeuAlaSerValLeuIle
+  349 : AATTGGCTAGAGAAGCCTCTATTAAGTACTTTCTTACTCAGACTCTTGCTTCAGTTTTAATC :  408
+
+   63 : LeuValSerGlyLeuTrpPheLeuThrLeuValSerGlyLeuGlyThrMetAlaLeuLeuLe :   83
+        ||||||.!!|||||||||||||||.!!! !  !.!!||||||!.!|||:!:.!!||||||||
+        LeuValGlyGlyLeuTrpPheLeuAlaPro***GlyGlyLeuAlaThrLeuThrLeuLeuLe
+  409 : CTAGTAGGGGGATTGTGGTTTCTAGCCCCGTGAGGGGGGCTGGCAACATTAACCCTCCTGCT :  471
+
+   84 : uGlyLeuSerIleLysLeuGlyAlaAlaProPheHisSerTrpValLeuSerIleAlaGluA :  104
+        |||||||!!!|||||||||||||||||||||||||||!!!||||||||||||||||||||||
+        uGlyLeuArgIleLysLeuGlyAlaAlaProPheHisArgTrpValLeuSerIleAlaGluA
+  472 : GGGGTTAAGAATTAAGCTGGGGGCTGCCCCCTTCCACAGATGGGTCCTCTCTATCGCCGAGG :  534
+
+  105 : laSerGlyTrpValProLeuPheThrLeuLeuThrIleGlnLysIleAsnProLeuMetVal :  124
+        ||!!!||||||||||||||||||.!!||||||||||||||||||||||||||||||:!::!!
+        laArgGlyTrpValProLeuPheAlaLeuLeuThrIleGlnLysIleAsnProLeuLeuIle
+  535 : CAAGAGGGTGGGTCCCTCTTTTTGCCCTGCTCACTATTCAAAAAATTAACCCCTTGCTAATA :  594
+
+  125 : LeuTrpMetPheCysHisLeuSerMetAlaPhePheTyrMetValValLeuSerSerLeuIl :  145
+        |||!! !!:||||||||||||!!!||| !!|||||||||:!!||||||||||||||||||||
+        Leu***IlePheCysHisLeuArgMetProPhePheTyrValValValLeuSerSerLeuIl
+  595 : TTATGAATATTTTGCCATTTAAGAATGCCTTTTTTTTATGTGGTGGTCTTAAGCTCTTTAAT :  657
+
+  146 : eMetGlyGlyLeuAlaGlyLeuThrGlnThrSerIleArgSerIleLeuThrPheSerSerI :  166
+        |!!:|||||||||||||||||||||||||||!!!:!!|||||||||||||||||||||||||
+        eIleGlyGlyLeuAlaGlyLeuThrGlnThrArgValArgSerIleLeuThrPheSerSerI
+  658 : CATAGGGGGGTTAGCAGGCCTAACTCAGACGAGAGTTCGATCAATCTTAACTTTTTCCTCAA :  720
+
+  167 : leAsnHisValGlyTrpLeuMetThrAlaLeuSerPheSerPheGlyValGlyValTyrTyr :  186
+        ||||||||||||||||||||||||||||||||!!!||||||!!. !!||||||!.!||||||
+        leAsnHisValGlyTrpLeuMetThrAlaLeuArgPheSerLeuArgValGlyAlaTyrTyr
+  721 : TCAATCATGTAGGCTGGTTGATGACAGCCTTAAGATTTAGTTTAAGAGTAGGGGCTTACTAT :  780
+
+  187 : PhePheIleTyrLeuLeuThrLeuLeuCysSerIleMetIlePheHisMetPheAsnValSe :  207
+        |||.!!|||||||||  !||||||||||||||||||:!!|||||||||!!:|||||||||||
+        PheLeuIleTyrLeuThrThrLeuLeuCysSerIleLeuIlePheHisIlePheAsnValSe
+  781 : TTTCTTATTTATTTAACGACTCTTCTTTGTTCGATCTTGATTTTCCACATATTTAACGTGTC :  843
+
+  208 : rHisIleAsnGlnLeuSerLeuLeuSerPheLysProSerSerGlnMetLeuLeuPhePheA :  228
+        |||||||||||||||| !!|||||||||||||||||||||!:!|||||||||||||||||||
+        rHisIleAsnGlnLeuProLeuLeuSerPheLysProSerAsnGlnMetLeuLeuPhePheA
+  844 : TCACATTAATCAACTACCTCTTTTGAGTTTTAAGCCCAGTAACCAGATGCTATTATTTTTCG :  906
+
+  229 : laLeuLeuSerLeuGlyGlyLeuProProPheLeuGlyPheLeuProLysTrpMetIleLeu :  248
+        ||||||||||||||||||||||||||||||||||||||||||||||||||!! !!:||||||
+        laLeuLeuSerLeuGlyGlyLeuProProPheLeuGlyPheLeuProLys***IleIleLeu
+  907 : CCCTGCTATCGTTGGGGGGGCTGCCACCCTTCTTAGGGTTTCTTCCAAAGTGAATAATCTTA :  966
+
+  249 : GlnLeuThrValSerTyrSerLeuPheLeuValGlyGlyValMetIleCysMetSerLeuVa :  269
+        ||||||||||||||||||||||||.!!|||||||||||||||!!:||| !!!!:||||||||
+        GlnLeuThrValSerTyrSerLeuLeuLeuValGlyGlyValIleIleSerIleSerLeuVa
+  967 : CAGCTAACTGTCTCTTACTCATTGCTTTTAGTTGGGGGGGTTATAATTAGTATAAGCTTAGT : 1029
+
+  270 : lValLeuPhePheTyrLeuArgLeuMetPheSerSerPheMetMet :  284
+        |||||||||||||||||||||||||!!:||||||:!!||||||!!:
+        lValLeuPhePheTyrLeuArgLeuIlePheSerAlaPheMetIle
+ 1030 : AGTCTTGTTCTTCTACTTACGACTAATATTTTCGGCATTTATGATA : 1076
+
+vulgar: mtdna_D8_119; 0 284 . NC_000844.1 224 1076 + 1189 M 284 852
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	225	1076	1189	+	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 83.80 ; similarity 90.14
+NC_000844.1	exonerate:protein2genome:local	cds	225	1076	.	+	.	
+NC_000844.1	exonerate:protein2genome:local	exon	225	1076	.	+	.	insertions 0 ; deletions 0 ; identity 83.80 ; similarity 90.14
+NC_000844.1	exonerate:protein2genome:local	similarity	225	1076	1189	+	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 225 1 852
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 4737-5510; +; cox3
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome
+         Model: protein2genome:local
+     Raw score: 1265
+   Query range: 0 -> 258
+  Target range: 4661 -> 5435
+
+    1 : MetAsnHisProPheHisLeuValAspLysSerProTrpProIleLeuSerAlaPheSerVa :   21
+        !!:|||||||||||||||||||||||||||||||||||||||||||||!!!||||||!!!||
+        IleAsnHisProPheHisLeuValAspLysSerProTrpProIleLeuArgAlaPheArgVa
+ 4662 : ATAAATCACCCCTTCCACCTCGTAGATAAAAGCCCCTGGCCTATTTTAAGAGCCTTCAGAGT : 4722
+
+   22 : lMetSerLeuValSerGlyLeuAlaLysTrpPheHisThrPheAsnLeuAspLeuAlaValL :   42
+        |!!:!!!||||||!!!||||||||||||!! |||||||||||||||:!!|||||||||:!!|
+        lIleArgLeuValArgGlyLeuAlaLys***PheHisThrPheAsnIleAspLeuAlaIleL
+ 4723 : AATAAGATTAGTTAGAGGTCTAGCTAAATGATTTCATACTTTTAATATAGACTTGGCAATCC : 4785
+
+   43 : euGlyIlePheThrThrThrLeuValMetIleGlnTrpTrpArgAspValValArgGluGly :   62
+        ||||||||!!.:!!||||||||||||!!:|||||||||!! |||||||||||||||||||||
+        euGlyIleLeuSerThrThrLeuValIleIleGlnTrp***ArgAspValValArgGluGly
+ 4786 : TAGGCATTTTGTCTACCACCCTAGTGATAATTCAATGGTGACGAGACGTAGTCCGCGAAGGA : 4845
+
+   63 : ThrPheGlnGlyLeuHisThrSerLysValGlyValGlyLeuArgTrpGlyMetIleLeuPh :   83
+        |||||||||||||||||||||||||||||||||||||||||||||||||||!!:||||||||
+        ThrPheGlnGlyLeuHisThrSerLysValGlyValGlyLeuArgTrpGlyIleIleLeuPh
+ 4846 : ACTTTCCAAGGCCTCCATACAAGTAAGGTTGGCGTAGGGCTTCGTTGGGGAATAATCTTGTT : 4908
+
+   84 : eIleThrSerGluValLeuPhePheValSerPhePheTrpAlaPhePheHisSerSerLeuA :  104
+        ||||.!!|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        eIleAlaSerGluValLeuPhePheValSerPhePheTrpAlaPhePheHisSerSerLeuA
+ 4909 : CATTGCCTCAGAAGTTTTATTTTTTGTCTCATTTTTTTGGGCGTTCTTTCACAGTAGCCTTG : 4971
+
+  105 : laProAlaIleGluLeuGlySerAlaTrpProProLeuGlyIleLysProPheAsnProPhe :  124
+        ||||||||:!!|||||||||!!!|||!! |||||||||||||||||||||||||||||||||
+        laProAlaValGluLeuGlyArgAla***ProProLeuGlyIleLysProPheAsnProPhe
+ 4972 : CCCCCGCCGTTGAGCTGGGAAGAGCTTGACCCCCCCTTGGTATTAAACCCTTTAATCCATTT : 5031
+
+  125 : GlnIleProLeuLeuAsnThrAlaIleLeuLeuAlaSerGlyValThrValThrTrpAlaHi :  145
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        GlnIleProLeuLeuAsnThrAlaIleLeuLeuAlaSerGlyValThrValThrTrpAlaHi
+ 5032 : CAGATCCCCCTTCTAAATACTGCTATTCTTTTAGCCTCGGGGGTCACAGTTACTTGGGCACA : 5094
+
+  146 : sHisAlaLeuMetGluAsnAsnHisThrGlnAlaPheGlnGlyLeuPheLeuThrValLeuL :  166
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||!!!|
+        sHisAlaLeuMetGluAsnAsnHisThrGlnAlaPheGlnGlyLeuPheLeuThrValPheL
+ 5095 : CCACGCTTTAATGGAAAATAACCATACTCAAGCTTTTCAAGGATTATTTTTAACAGTCTTTC : 5157
+
+  167 : euGlyPheTyrPheThrSerLeuGlnAlaLeuGluTyrPheGluAlaProPheSerIleAla :  186
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        euGlyPheTyrPheThrSerLeuGlnAlaLeuGluTyrPheGluAlaProPheSerIleAla
+ 5158 : TCGGCTTTTACTTTACCTCTTTACAAGCCCTAGAATACTTTGAGGCCCCTTTCTCTATCGCC : 5217
+
+  187 : AspAlaValTyrGlyThrThrPhePheValAlaThrGlyPheHisGlyLeuHisValIleIl :  207
+        ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        AspAlaValTyrGlyThrThrPhePheValAlaThrGlyPheHisGlyLeuHisValIleIl
+ 5218 : GACGCTGTATACGGAACCACTTTTTTTGTGGCAACAGGGTTTCACGGACTTCATGTTATCAT : 5280
+
+  208 : eGlyThrThrPheLeuLeuIleCysLeuMetArgHisThrLeuHisHisPheSerPheThrH :  228
+        ||||||||||||||||||||||||||||!!:|||||||||||||||||||||||||||||||
+        eGlyThrThrPheLeuLeuIleCysLeuIleArgHisThrLeuHisHisPheSerPheThrH
+ 5281 : CGGGACAACTTTCTTACTAATTTGCCTTATCCGTCATACCCTTCATCATTTTTCTTTTACCC : 5343
+
+  229 : isHisPheGlyPheGluAlaAlaAlaTrpTyrTrpHisPheValAspValValTrpLeuPhe :  248
+        ||||||||||||||||||||||||||!! ||||||||||||||||||||||||!! ||||||
+        isHisPheGlyPheGluAlaAlaAla***TyrTrpHisPheValAspValVal***LeuPhe
+ 5344 : ATCATTTTGGGTTTGAAGCGGCAGCATGATATTGGCACTTTGTTGACGTTGTTTGACTATTT : 5403
+
+  249 : LeuPheIleSerIleTyrTrpTrpGlyAsn :  258
+        ||||||||||||||||||||||||||||||
+        LeuPheIleSerIleTyrTrpTrpGlyAsn
+ 5404 : CTTTTTATCTCTATCTACTGGTGGGGCAAC : 5435
+
+vulgar: mtdna_D8_119; 0 258 . NC_000844.1 4661 5435 + 1265 M 258 774
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	4662	5435	1265	+	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 91.47 ; similarity 94.96
+NC_000844.1	exonerate:protein2genome:local	cds	4662	5435	.	+	.	
+NC_000844.1	exonerate:protein2genome:local	exon	4662	5435	.	+	.	insertions 0 ; deletions 0 ; identity 91.47 ; similarity 94.96
+NC_000844.1	exonerate:protein2genome:local	similarity	4662	5435	1265	+	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 4662 1 774
+# --- END OF GFF DUMP ---
+#
+
+C4 Alignment:
+------------
+         Query: mtdna_D8_119; 9852-10358; +; nad6
+        Target: NC_000844.1 Daphnia pulex mitochondrion, complete genome
+         Model: protein2genome:local
+     Raw score: 628
+   Query range: 0 -> 169
+  Target range: 9777 -> 10284
+
+     1 : IleGlyGlnPheLeuLeuLeuAlaSerMetValPheLeuValPheMetPheProLeuIle :    20
+         ||||||||||||!!!||||||.!!.!!!  ||||||:!!||||||!!:|||||||||:!!
+         IleGlyGlnPhePheLeuLeuThrGlyThrValPheIleValPheIlePheProLeuVal
+  9778 : ATTGGACAGTTTTTTCTTCTTACTGGGACAGTCTTTATAGTATTTATATTCCCCTTAGTC :  9835
+
+    21 : SerHisProLeuLeuMetGlyLeuThrIleLeuIleIleThrPheMetLeuAlaValThr :    40
+         !!!||||||||||||!!:||||||! !||||||||||||||||||!!::!!|||!.!|||
+         ArgHisProLeuLeuIleGlyLeuIleIleLeuIleIleThrPheIleIleAlaAlaThr
+  9836 : AGACACCCCCTCCTCATAGGGCTAATTATCCTTATTATTACTTTTATAATCGCTGCAACA :  9895
+
+    41 : LeuGlyLeuSerGlyLeuSerSerTrpLeuSerTyrValLeuValLeuIleLeuLeuGly :    60
+         |||||||||.!!||||||!!!|||!! |||||||||||||||||||||||||||||||||
+         LeuGlyLeuGlyGlyLeuArgSer***LeuSerTyrValLeuValLeuIleLeuLeuGly
+  9896 : TTAGGGCTTGGGGGGCTAAGATCTTGACTCTCTTACGTCTTAGTATTAATTTTGTTGGGG :  9955
+
+    61 : GlyLeuLeuValIlePheIleTyrIleSerLeuLeuAlaAlaAsnGluAsnGlnMetPro :    80
+         |||||||||||||||||||||||||||||||||||||||:!!||||||||||||!  |||
+         GlyLeuLeuValIlePheIleTyrIleSerLeuLeuAlaSerAsnGluAsnGlnThrPro
+  9956 : GGGTTACTTGTTATTTTTATTTACATCTCACTCCTTGCTTCCAATGAAAATCAGACACCC : 10015
+
+    81 : GlnLysAsnLysIleLysValPhePheLeuGlyThrThrMetIleLeuAlaAlaSerLeu :   100
+         |||!..||||||||||||:!!|||||||||.!!||||||   |||||||||!.!||||||
+         GlnSerAsnLysIleLysIlePhePheLeuSerThrThrSerIleLeuAlaGlySerLeu
+ 10016 : CAAAGTAATAAAATTAAAATATTTTTTTTAAGTACCACATCAATTTTAGCGGGCTCTCTT : 10075
+
+   101 : ThrPheSerSerSerLeuLysMetPheAspSerLysAsnAsnAlaLeuLeuLysMetAla :   120
+         ..!.!!||||||!!!||||||:!:||||||||||||!.!|||||||||||||||!!:.!!
+         ValIleSerSerArgLeuLysValPheAspSerLysThrAsnAlaLeuLeuLysIleThr
+ 10076 : GTAATTTCTTCCAGACTAAAAGTATTTGACTCTAAAACCAATGCCCTTTTAAAAATAACC : 10135
+
+   121 : ProHisAsnAsnGluAsnMetAsnTrpLeuAsnLeuLeuTyrSerGluGlnLeuGlyGly :   140
+         ! !:!!|||||||||!:!!  :!!!! |||||||||||||||||||||||||||||||||
+         HisTyrAsnAsnGluSerThrAsp***LeuAsnLeuLeuTyrSerGluGlnLeuGlyGly
+ 10136 : CACTACAACAATGAAAGTACAGACTGATTAAATTTACTGTACTCCGAACAATTAGGCGGA : 10195
+
+   141 : ValThrIlePheLeuValLeuTyrLeuLeuLeuThrLeuIleValValValThrIleSer :   160
+         :!!||||||||||||||||||||||||||||||||||||||||||||||||.!!||||||
+         MetThrIlePheLeuValLeuTyrLeuLeuLeuThrLeuIleValValValAlaIleSer
+ 10196 : ATGACTATTTTCCTTGTCCTTTACCTCTTACTCACTCTTATTGTAGTAGTGGCTATCAGC : 10255
+
+   161 : LysAsnAspSerSerSerLeuArgAla :   169
+         |||||||||||||||||||||||||||
+         LysAsnAspSerSerSerLeuArgAla
+ 10256 : AAGAACGATTCCTCTTCTCTGCGAGCC : 10284
+
+vulgar: mtdna_D8_119; 0 169 . NC_000844.1 9777 10284 + 628 M 169 507
+# --- START OF GFF DUMP ---
+#
+#
+##gff-version 2
+##source-version exonerate:protein2genome:local 2.4.0
+##date 2022-12-12
+##type DNA
+#
+#
+# seqname source feature start end score strand frame attributes
+#
+NC_000844.1	exonerate:protein2genome:local	gene	9778	10284	628	+	.	gene_id 1 ; sequence mtdna_D8_119; ; gene_orientation . ; identity 77.51 ; similarity 85.80
+NC_000844.1	exonerate:protein2genome:local	cds	9778	10284	.	+	.	
+NC_000844.1	exonerate:protein2genome:local	exon	9778	10284	.	+	.	insertions 0 ; deletions 0 ; identity 77.51 ; similarity 85.80
+NC_000844.1	exonerate:protein2genome:local	similarity	9778	10284	628	+	.	alignment_id 1 ; Query mtdna_D8_119; ; Align 9778 1 507
+# --- END OF GFF DUMP ---
+#
+-- completed exonerate analysis

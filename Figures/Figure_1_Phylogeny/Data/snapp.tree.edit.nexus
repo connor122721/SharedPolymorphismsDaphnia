@@ -1,0 +1,108 @@
+#NEXUS
+begin taxa;
+	dimensions ntax=6;
+	taxlabels
+	'Daphnia.obtusa.Europe'[&!name="Euro D. obtusa"]
+	'Daphnia.obtusa.NorthAmerica'[&!name="NAm. D. obtusa"]
+	'Daphnia.pulex.Europe'[&!name="Euro D. pulex"]
+	'Daphnia.pulex.NorthAmerica'[&!name="NAm. D. pulex"]
+	'Daphnia.pulicaria.Europe'[&!name="Euro D. pulicaria"]
+	'Daphnia.pulicaria.NorthAmerica'[&!name="NAm. D. pulicaria"]
+;
+end;
+
+begin trees;
+	tree TREE1 = [&R] ('Daphnia.obtusa.Europe'[&height=1.289651177484758E-13,height_95%_HPD={4.973799150320701E-14,1.9184653865522705E-13},height_median=1.2789769243681803E-13,height_range={4.618527782440651E-14,2.2382096176443156E-13},length=30.48685294632021,length_95%_HPD={24.42268967211669,37.185836994613084},length_median=30.31744454297049,length_range={21.465807912751075,42.87768670422573},theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}]:31.232146,('Daphnia.obtusa.NorthAmerica'[&height=1.506076694448421E-14,height_95%_HPD={0.0,8.526512829121202E-14},height_median=0.0,height_range={0.0,1.1368683772161603E-13},length=29.59979259560043,length_95%_HPD={24.022053599383565,36.49151993656697},length_median=29.306811476058158,length_range={21.261380995636298,42.5649292018872},theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}]:29.411731,('Daphnia.pulex.Europe'[&height=2.4333269085752636E-14,height_95%_HPD={0.0,8.526512829121202E-14},height_median=1.4210854715202004E-14,height_range={0.0,9.237055564881302E-14},length=10.923038407856318,length_95%_HPD={8.233482290302113,13.37213983143561},length_median=10.85462967181847,length_range={7.2938101722598105,16.327117345969796},theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}]:10.923038,(('Daphnia.pulex.NorthAmerica'[&height=2.4353409185972595E-14,height_95%_HPD={0.0,8.526512829121202E-14},height_median=1.4210854715202004E-14,height_range={0.0,9.592326932761353E-14},length=3.9245680055943244,length_95%_HPD={2.941700374764178,4.985965613253072},length_median=3.873851803596203,length_range={2.4525279388690002,6.452838357130986},theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}]:3.924568,'Daphnia.pulicaria.NorthAmerica'[&height=2.4353409185972595E-14,height_95%_HPD={0.0,8.526512829121202E-14},height_median=1.4210854715202004E-14,height_range={0.0,9.592326932761353E-14},length=3.9245680055943244,length_95%_HPD={2.941700374764178,4.985965613253072},length_median=3.873851803596203,length_range={2.4525279388690002,6.452838357130986},theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}]:3.924568)[&height=3.924568005594349,height_95%_HPD={2.941700374764178,4.985965613253121},height_median=3.8738518035962635,height_range={2.452527938869011,6.452838357130986},length=1.7298947394102615,length_95%_HPD={0.980104227655147,2.7555673158250187},length_median=1.6927318440431733,length_range={0.5310977425447163,3.543957172472709},posterior=1.0,theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}]:1.729895,'Daphnia.pulicaria.Europe'[&height=2.4329241065708645E-14,height_95%_HPD={0.0,8.526512829121202E-14},height_median=1.4210854715202004E-14,height_range={0.0,9.237055564881302E-14},length=5.654462745004598,length_95%_HPD={4.370539904871848,7.0506566462180515},length_median=5.566334352046967,length_range={3.9214645998193696,8.188676958883278},theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}]:5.654463)[&height=5.6544627450046185,height_95%_HPD={4.370539904871922,7.050656646218101},height_median=5.56633435204701,height_range={3.9214645998193802,8.188676958883278},length=5.268575662851727,length_95%_HPD={3.6848665324255094,6.892361085780063},length_median=5.228732257092261,length_range={3.087914051802777,9.213151486220177},posterior=1.0,theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}]:5.268576)[&height=10.923038407856339,height_95%_HPD={8.233482290302113,13.372139831435632},height_median=10.854629671818484,height_range={7.293810172259814,16.32711734596981},length=19.35812474178791,length_95%_HPD={15.250269741895043,24.099621048267963},length_median=19.21719574524129,length_range={12.310863029348866,27.83770176686376},posterior=1.0,theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}]:18.488693)[&height=29.411731047930264,height_95%_HPD={24.042651528727212,36.49151993656697},height_median=29.227716034706344,height_range={21.261380995636298,42.56492920188729},length=1.793311895515553,length_95%_HPD={8.560664876817725E-4,3.878994323707424},length_median=1.661931390469901,length_range={8.560664876817725E-4,6.513527870863172},posterior=0.5124716553287982,theta=0.007220553489183213,theta_95%_HPD={0.00508853263706483,0.0089999316837436},theta_median=0.0071548295789710375,theta_range={0.004705392266153703,0.010832031143338298}]:1.820415)[&height=31.232145830155755,height_95%_HPD={25.032198481626814,37.07291562108465},height_median=30.951673936214384,height_range={23.084086623583808,42.87768670422588},length=0.0,posterior=1.0,theta=0.007339655457086645,theta_95%_HPD={0.005274204205435965,0.009396706367961683},theta_median=0.007264345749367138,theta_range={0.004705392266153703,0.011232148783644747}];
+end;
+
+begin figtree;
+	set appearance.backgroundColorAttribute="Default";
+	set appearance.backgroundColour=#ffffff;
+	set appearance.branchColorAttribute="User selection";
+	set appearance.branchColorGradient=false;
+	set appearance.branchLineWidth=5.0;
+	set appearance.branchMinLineWidth=0.0;
+	set appearance.branchWidthAttribute="Fixed";
+	set appearance.foregroundColour=#000000;
+	set appearance.hilightingGradient=false;
+	set appearance.selectionColour=#2d3680;
+	set branchLabels.colorAttribute="User selection";
+	set branchLabels.displayAttribute="posterior";
+	set branchLabels.fontName="Arial";
+	set branchLabels.fontSize=22;
+	set branchLabels.fontStyle=1;
+	set branchLabels.isShown=true;
+	set branchLabels.significantDigits=4;
+	set layout.expansion=0;
+	set layout.layoutType="RECTILINEAR";
+	set layout.zoom=0;
+	set legend.attribute="posterior";
+	set legend.fontSize=17.0;
+	set legend.isShown=false;
+	set legend.significantDigits=2;
+	set nodeBars.barWidth=4.0;
+	set nodeBars.displayAttribute="height_95%_HPD";
+	set nodeBars.isShown=false;
+	set nodeLabels.colorAttribute="User selection";
+	set nodeLabels.displayAttribute="height_95%_HPD";
+	set nodeLabels.fontName="Arial";
+	set nodeLabels.fontSize=22;
+	set nodeLabels.fontStyle=1;
+	set nodeLabels.isShown=true;
+	set nodeLabels.significantDigits=2;
+	set nodeShapeExternal.colourAttribute="User selection";
+	set nodeShapeExternal.isShown=false;
+	set nodeShapeExternal.minSize=10.0;
+	set nodeShapeExternal.scaleType=Width;
+	set nodeShapeExternal.shapeType=Circle;
+	set nodeShapeExternal.size=4.0;
+	set nodeShapeExternal.sizeAttribute="Fixed";
+	set nodeShapeInternal.colourAttribute="User selection";
+	set nodeShapeInternal.isShown=false;
+	set nodeShapeInternal.minSize=10.0;
+	set nodeShapeInternal.scaleType=Width;
+	set nodeShapeInternal.shapeType=Circle;
+	set nodeShapeInternal.size=4.0;
+	set nodeShapeInternal.sizeAttribute="Fixed";
+	set polarLayout.alignTipLabels=false;
+	set polarLayout.angularRange=0;
+	set polarLayout.rootAngle=0;
+	set polarLayout.rootLength=100;
+	set polarLayout.showRoot=true;
+	set radialLayout.spread=0.0;
+	set rectilinearLayout.alignTipLabels=false;
+	set rectilinearLayout.curvature=10000;
+	set rectilinearLayout.rootLength=0;
+	set scale.offsetAge=0.0;
+	set scale.rootAge=1.0;
+	set scale.scaleFactor=1.0;
+	set scale.scaleRoot=false;
+	set scaleAxis.automaticScale=true;
+	set scaleAxis.fontSize=22.0;
+	set scaleAxis.isShown=true;
+	set scaleAxis.lineWidth=4.0;
+	set scaleAxis.majorTicks=5.0;
+	set scaleAxis.minorTicks=2.5;
+	set scaleAxis.origin=0.0;
+	set scaleAxis.reverseAxis=true;
+	set scaleAxis.showGrid=false;
+	set scaleBar.automaticScale=true;
+	set scaleBar.fontSize=22.0;
+	set scaleBar.isShown=true;
+	set scaleBar.lineWidth=4.0;
+	set scaleBar.scaleRange=4.0;
+	set tipLabels.colorAttribute="User selection";
+	set tipLabels.displayAttribute="Names";
+	set tipLabels.fontName="Arial";
+	set tipLabels.fontSize=22;
+	set tipLabels.fontStyle=3;
+	set tipLabels.isShown=true;
+	set tipLabels.significantDigits=4;
+	set trees.order=false;
+	set trees.orderType="increasing";
+	set trees.rooting=false;
+	set trees.rootingType="User Selection";
+	set trees.transform=false;
+	set trees.transformType="cladogram";
+end;
+
