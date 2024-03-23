@@ -1,11 +1,10 @@
-# *Evolutionary genomics of trans-specific polymorphisms between cryptic species*
+# *Shared polymorphisms between cryptic Daphnia species*
 # DOI: TBD
 ---
-January 18th, 2024
+March 20th, 2024
 
 This repository contains the scripts used to generate and analyze the *Daphnia* phylogeography dataset.
 By: Connor S. Murray (csm6hg@virginia.edu or connormurray1227@gmail.com)
-ORCID: https://orcid.org/0000-0002-8302-6585
 
 ## <u> Scripts Repository </u>
 ---
