@@ -1,9 +1,13 @@
-Models,,,,,,,,
-M.0,Activity ~ 1 + Hour + (1|Individual) +(1|Day),,,,,,,
-M.1,Activity ~ Genotype + Hour + (1|Individual) +(1|Day),,,,,,,
-M.2,Activity ~ Genotype*Light + Hour + (1|Individual) +(1|Day),,,,,,,
+Model,,,,,,,,
+1,y ~ Hour + (1 | Sample) + (1 | Clone) + (1 | Block),,,,,,,
+2,y ~ Hour + Light + (1 | Sample) + (1 | Clone) + (1 | Block),,,,,,,
+3,y ~ Hour + Light + Genotype + (1 | Sample) + (1 | Clone) + (1 | Block),,,,,,,
+4,y ~ Hour + Light * Genotype + (1 | Sample) + (1 | Clone) + (1 | Block),,,,,,,
+5,y ~ Hour * Light * Genotype + (1 | Sample) + (1 | Clone) + (1 | Block),,,,,,,
 ,,,,,,,,
-Models,Parameters,AIC,BIC,Log-likelihood,Deviance,Chi-square,DF,p-value
-M.0,5,-880.78,-855.3,445.39,-890.78,,,
-M.1,7,-878.46,-842.8,446.23,-892.46,1.6849,2,0.430651
-M.2,10,-886.63,-835.68,453.31,-906.63,14.1678,3,0.002685
+Model,Parameters,AIC,BIC,Log-likelihood,Deviance,Chi-square,DF,p-value
+1,5,1365908,1365969,-682949,1365898,,,
+2,7,1365902,1365988,-682944,1365888,9.7958,2,0.007462
+3,9,1365906,1366017,-682944,1365888,0.2466,2,0.883991
+4,13,1365913,1366073,-682943,1365887,0.8641,4,0.92965
+5,21,1364879,1365138,-682419,1364837,1049.4627,8,<2e-16

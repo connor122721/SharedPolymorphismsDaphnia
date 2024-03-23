@@ -1,6 +1,6 @@
 # Read in betascan output and visualize
 # Connor Murray 10.26.2023
-# module load goolf/7.1.0_3.1.4 R/4.0.3; module load gdal geos proj; R
+# module load gcc/11.4.0 openmpi/4.1.4 R/4.3.1; R
 
 # Packages
 library(data.table)
@@ -12,7 +12,7 @@ library(ggridges)
 library(cowplot)
 
 # Working directory
-setwd('/project/berglandlab/connor/chapter1/betascan/')
+setwd('/scratch/csm6hg/betascan/')
 
 # betascan output files
 file1 <- list.files(pattern = "euro.betafin",
@@ -54,11 +54,11 @@ fin.dt <- foreach(i=1:len, .combine = "rbind", .errorhandling = "pass") %do% {
     
 }
 
-#saveRDS(fin.dt, "../data/betascan.daphnia.phased.rds")
-fin.dt <- readRDS("../../data/betascan.daphnia.phased.rds")
+#saveRDS(fin.dt, "/scratch/csm6hg/data/betascan.daphnia.phased.rds")
+fin.dt <- readRDS("/scratch/csm6hg/data/betascan.daphnia.phased.rds")
 
 # SNP metadata - TSPs
-tot <- readRDS(file="/project/berglandlab/connor/data/classified_snps_filt.rds")
+tot <- readRDS(file="/scratch/csm6hg/data/classified_snps_filt.rds")
 fin.dt2 <- data.table(na.omit(fin.dt %>% left_join(tot, by=c("chrom", "Position"="position"))) %>% 
                 mutate(snp=case_when(classified=="shared_poly"~"TSP",
                                      TRUE ~ "Not TSP"),
@@ -68,6 +68,7 @@ fin.dt2 <- data.table(na.omit(fin.dt %>% left_join(tot, by=c("chrom", "Position"
 # Restrict to conservative TSP set
 con.tsp <- data.table(readRDS("/scratch/csm6hg/data/unchanged_SNPs_across_assembly.RDS"))
 fin.dt2 <- fin.dt2[ch %in% con.tsp$ch]
+table(fin.dt2$cont)
 
 # Gene average
 fin.dt3 <- data.table(na.omit(fin.dt2 %>% 
@@ -89,7 +90,7 @@ g.avg <- data.table(fin.dt2 %>%
 
 # Candidate gene avg.
 cand.avg <- data.table(fin.dt2[gene=="Daphnia11806-RA"] %>% 
-                         group_by(simpleAnnot,cont, snp) %>% 
+                         group_by(cont) %>% 
                          summarize(mean=mean(Beta, na.rm = T)))
 
 # difference in Betastat across pop
@@ -129,11 +130,11 @@ beta.plot <- {
 }
 
 # Stats
-t.test(Beta~snp, fin.dt2[simpleAnnot%in%c("NS")][cont=="NAm. D. pulex"])
-t.test(Beta~snp, fin.dt2[simpleAnnot%in%c("NS")][cont=="Euro. D. pulex"])
+t.test(fin.dt2[simpleAnnot%in%c("NS")][cont=="NAm. D. pulex"][snp=="TSP"]$Beta)
+t.test(fin.dt2[simpleAnnot%in%c("NS")][cont=="Euro. D. pulex"][snp=="TSP"]$Beta)
 
-t.test(Beta~snp, fin.dt2[simpleAnnot%in%c("Syn")][cont=="NAm. D. pulex"])
-t.test(Beta~snp, fin.dt2[simpleAnnot%in%c("Syn")][cont=="Euro. D. pulex"])
+t.test(fin.dt2[simpleAnnot%in%c("Syn")][cont=="NAm. D. pulex"][snp=="TSP"]$Beta)
+t.test(fin.dt2[simpleAnnot%in%c("Syn")][cont=="Euro. D. pulex"][snp=="TSP"]$Beta)
 
 # Output
 ggsave(plot = beta.plot, 

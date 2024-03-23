@@ -1,5 +1,5 @@
 # Trans species polymorphism - FIS
-# 3.12.2024
+# 3.22.2024
 # ijob -c 10 --mem=50G -p standard -A berglandlab
 # module load gcc/11.4.0 openmpi/4.1.4 R/4.3.1; R
 
@@ -55,6 +55,33 @@ fis.plot <- {
 # Save output
 ggsave("/scratch/csm6hg/figs/SuppFigure_FIS_Dist_Sim.pdf", plot = fis.plot, width=6, height=10, dpi=300)
 
+fis.plot2 <- {
+  gene.ag[!exp=="Wild AxC F1s"] %>% 
+    ggplot() +
+    geom_density(aes(x = FIS, fill = sim), alpha=0.7) +
+    geom_vline(data=gene.ag[sim=="Empirical"][!exp=="Wild AxC F1s"][gene %in% "Daphnia11806-RA"], 
+               aes(xintercept = FIS), size= 0.8,
+               color="steelblue2") +
+    scale_fill_manual(values = c("Empirical"="blue",
+                                 "Simulation w/RD HWE"="rosybrown")) +
+    facet_wrap(~exp, ncol = 1) +
+    theme_bw() +
+    labs(title = "", 
+         y="Density of Genes",
+         fill = "",
+         x = expression(italic(italic("F")["IS"]))) +
+    theme(legend.position = "bottom",
+          legend.text = element_text(face="bold", size=16),
+          legend.title = element_text(face="bold", size=18), 
+          strip.text = element_text(face="bold", size=18), 
+          axis.text.x = element_text(face="bold", size=18),
+          axis.text.y = element_text(face="bold", size=18),
+          axis.title.x = element_text(face="bold", size=18),
+          axis.title.y = element_text(face="bold", size=18),
+          axis.title = element_text(face="bold", size=20))
+}
+ggsave("/scratch/csm6hg/figs/SuppFigure_FIS_dist_crossesAll.pdf", fis.plot2, width = 6, height=12, dpi=300)
+
 ### F1 frequency for genotypes ###
 
 # Data for blue opsin gene
@@ -76,16 +103,28 @@ denom <- data.table(dat[all %in% c(0,1,2)][!is.na(variant.id.y)] %>%
             summarize(prop.d=length(unique((Sample)))))
 
 # Distribution of F1s for genome
-toti <- data.table(dat[all %in% c(0,1,2)][!is.na(variant.id.y)] %>% 
+toti <- data.table(dat[all %in% c(0,1,2)][!is.na(variant.id.y)][!gene=="Daphnia11806-RA"] %>% 
            left_join(denom) %>% 
            group_by(all, exp, gene, variant.id.x) %>% 
            summarize(n=(n()/prop.d)*100) %>% 
-           group_by(all, exp, gene) %>% 
+           group_by(all, exp) %>% 
            summarize(n_mean=mean(n),
                      n_med=median(n),
                      n_uci=quantile(n, probs = 0.95),
                      n_lci=quantile(n, probs = 0.05),
-                     snpset=unique(exp)))
+                     snpset="Genome-wide"))
+
+# Empirical data for BLOP
+toti.blop <- data.table(dat[all %in% c(0,1,2)][!is.na(variant.id.y)][gene=="Daphnia11806-RA"] %>% 
+                     left_join(denom) %>% 
+                     group_by(all, exp, gene, variant.id.x, classified) %>% 
+                     summarize(n=(n()/prop.d)*100) %>% 
+                     group_by(all, exp, gene, variant.id.x, classified) %>% 
+                     summarize(n_mean=mean(n),
+                               n_med=median(n),
+                               n_uci=quantile(n, probs = 0.95),
+                               n_lci=quantile(n, probs = 0.05),
+                               snpset="BLOP"))
 
 # Data for simulated blue opsin gene genotypes based on RD
 blop <- data.table(readRDS("/scratch/csm6hg/data/Crosses.daphnia11806-ra.sims.rds"))
@@ -102,32 +141,33 @@ blop <- data.table(blop %>%
                        sim.geno=="hom ref"~0,
                        sim.geno=="hom alt"~2)))
 
-blop.tot <- blop[snpset=="SPs BLOP"] %>% 
+blop.tot <- data.table(blop[snpset=="SPs BLOP"] %>% 
   group_by(sim.geno, exp) %>% 
   summarize(y.prop=(sum(y)/sum(num))*100,
             snpset="Sim. BLOP",
             variant.id=paste("test12", snpset),
             all=case_when(sim.geno=="het" ~ 1,
                           sim.geno=="hom ref" ~ 0,
-                          sim.geno=="hom alt" ~ 2))
+                          sim.geno=="hom alt" ~ 2)))
 
 # HWE expectation 
 hwe <- data.table(all=c(0,1,2), y=c(25,50,25), snpset="HWE", variant.id="test")
 
 # Distribution of genotype frequencies in F1s for blue opsin gene
 f1_daphnia <- {
-   toti %>%
+   toti[exp=="Wild AxC F1s"] %>%
     ggplot(., 
            aes(x=as.factor(all), 
                y=n_med, 
                color=snpset,
-               group=gene), size=1.5) +
-    geom_line(alpha=0.05) + 
-    facet_wrap(~exp, ncol = 1) +
+               group=1)) +
+    geom_line(size=1.5) + 
     geom_line(data=hwe, 
               aes(x=as.factor(all), y=y, color=snpset, group=1), size=1.5) +
-    geom_line(data=blop.tot, 
+    geom_line(data=blop.tot[exp=="Wild AxC F1s"], 
               aes(x=as.factor(all), y=y.prop, color=snpset, group=1), size=1.5) +
+    geom_line(data=toti.blop[exp=="Wild AxC F1s"][classified=="shared_poly"], 
+              aes(x=as.factor(all), y=n_med, color=snpset, group=variant.id.x), size=1.5, alpha=0.7) +
     ylim(c(0,100)) +
     theme_bw() +
     labs(x="Allele dosage",
@@ -144,7 +184,40 @@ f1_daphnia <- {
 }
 
 ### Output
-ggsave("/scratch/csm6hg/figs/SuppFigure_FIS_BLOP_new.pdf", f1_daphnia, width = 8, height=6, dpi=300)
+ggsave("/scratch/csm6hg/figs/SuppFigure_FIS_BLOP_new_crossAxCWild.pdf", f1_daphnia, width = 8, height=4, dpi=300)
+
+# Distribution of mutations for BLOP across crosses
+f1_daphnia_all <- {
+  toti[!exp=="Wild AxC F1s"] %>%
+    ggplot(., 
+           aes(x=as.factor(all), 
+               y=n_med, 
+               color=snpset,
+               group=1)) +
+    facet_wrap(~exp, ncol = 1) +
+    geom_line(size=1.5) + 
+    geom_line(data=hwe, 
+              aes(x=as.factor(all), y=y, color=snpset, group=1), size=1.5) +
+    geom_line(data=blop.tot[!exp=="Wild AxC F1s"], 
+              aes(x=as.factor(all), y=y.prop, color=snpset, group=1), size=1.5) +
+    geom_line(data=toti.blop[!exp=="Wild AxC F1s"][classified=="shared_poly"], 
+              aes(x=as.factor(all), y=n_med, color=snpset, group=variant.id.x), size=1.5, alpha=0.7) +
+    ylim(c(0,100)) +
+    theme_bw() +
+    labs(x="Allele dosage",
+         y="F1 genotype frequency (%)",
+         color="") +
+    theme(legend.position = "bottom", 
+          strip.text = element_text(face="bold", size=18),
+          legend.text = element_text(face="bold", size=18),
+          axis.text.x = element_text(face="bold", size=18),
+          axis.text.y = element_text(face="bold", size=18),
+          axis.title.x = element_text(face="bold", size=20),
+          axis.title.y = element_text(face="bold", size=20),
+          axis.title = element_text(face="bold", size=20))
+}
+
+ggsave("/scratch/csm6hg/figs/SuppFigure_FIS_BLOP_new_crossAll.pdf", f1_daphnia_all, width = 6, height=12, dpi=300)
 
 #### Table of frequencies over time ###
 
