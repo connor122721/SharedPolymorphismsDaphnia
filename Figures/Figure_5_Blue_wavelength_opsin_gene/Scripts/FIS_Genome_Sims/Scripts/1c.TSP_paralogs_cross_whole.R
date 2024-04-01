@@ -61,6 +61,8 @@ snp.dt <- snp.dt[position %in% fin.tot2$position]
 #snp.dt <- snp.dt[chrom=="Scaffold_1931_HRSCAF_2197"][position %in% 6350219:6351796]
 #snp.dt <- snp.dt[position %in% fin.tot2[gene=="Daphnia11806-RA"]$position]
 
+table(fin.tot2[gene %in% "Daphnia03670-RA"]$col)
+
 # Parent 1
 SC_1 <- unique(samps[SC %in% SC1][WildSequenced==0][Nonindependent==0]$clone)
   

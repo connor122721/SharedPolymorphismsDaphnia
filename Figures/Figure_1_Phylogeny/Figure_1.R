@@ -1,6 +1,6 @@
 # Make Figure 1
-# Connor Murray 12.8.2022
-# module load goolf/7.1.0_3.1.4 R/4.0.3; module load gdal geos proj; R
+# Connor Murray 3.29.2024
+# module load gcc/11.4.0 openmpi/4.1.4 R/4.3.1; R
 
 # Libraries
 library(data.table)
@@ -12,14 +12,14 @@ library(ape)
 library(treeio)
 
 # Working directory
-setwd("/project/berglandlab/connor/")
+setwd("/scratch/csm6hg/data/")
 
 # Metadata
-fin <- data.table(read.csv("metadata/samples.fin.9.8.22.csv"))
+fin <- data.table(read.csv("samples.fin.9.8.22.csv"))
 
 # Open PCA rds
-#ccm_pca <- readRDS("new_vcf2/pca.daphnia.genome.filt.mlgsub.outgroup.rds")
-ccm_pca <- readRDS("new_vcf2/pca.daphnia.genome.filt.mlgsub.nooutgroup.rds")
+#ccm_pca <- readRDS("pca.daphnia.genome.filt.mlgsub.outgroup.rds")
+ccm_pca <- readRDS("pca.daphnia.genome.filt.mlgsub.nooutgroup.rds")
 
 # Merge by Sample
 pca <- data.table(sample=ccm_pca$sample.id, PC1=ccm_pca$eigenvect[,1],
@@ -71,11 +71,10 @@ pca.plot <- {
 
 ggsave(pca.plot, filename = "figures/pca.new.outgroup.pdf", height = 10, width = 12)
 
-# Anova
+# GLM
 library(multcomp) 
 pca$cont <- as.factor(pca$cont)
-aov1 <- lm(PC1 + PC2 ~ cont, data=pca)
-#aov2 <- TukeyHSD(aov(aov1))
+aov1 <- glm(PC1 + PC2 ~ cont, data=pca)
 summary(glht(aov1, linfct = mcp(cont = "Tukey")))
 
 ### Map ###
