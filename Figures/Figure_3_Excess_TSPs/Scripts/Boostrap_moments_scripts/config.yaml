@@ -1,0 +1,11 @@
+# Config file for demographic inference with run_moments.py
+mutation_rate: !!float 5.69e-9
+seq_len: 120000000
+output_file: /scratch/csm6hg/moments/output/filt_DI_output.txt
+data_dict_pickle_file: /scratch/csm6hg/moments/daphnia.filt.mlg.genome.11.18.22_data_dict.pickle
+popinfo_file: /scratch/csm6hg/moments/moments_list
+pop_names: [Daphnia.pulex.NorthAmerica, Daphnia.pulex.Europe]
+num_of_inference_repeats: 5
+verbosity: 0
+#model: split_no_mig
+#model: split_mig

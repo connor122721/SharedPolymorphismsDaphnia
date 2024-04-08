@@ -1,6 +1,6 @@
 # Trans species polymorphism - FIS
-# 1.30.2024
-# ijob -c 15 --mem=50G -p standard -A berglandlab
+# 3.18.2024
+# ijob -c 10 --mem=50G -p standard -A berglandlab
 # module load gcc/11.4.0 openmpi/4.1.4 R/4.3.1; R
 
 ### libraries
@@ -12,7 +12,13 @@
   registerDoMC(10)
 
 ### Read in data
-  dat <- readRDS("/project/berglandlab/connor/chapter1/paralogs/AxC_tot_het_withmeta.rds")
+  dt1 <- data.table(readRDS("/scratch/csm6hg/data/AxC_lab_tot_het_withmet.rds"), exp="Lab AxC F1s")
+  dt2 <- data.table(readRDS("/scratch/csm6hg/data/AxC_Nolab_subsamp_tot_het_withmet.rds"), exp="Wild AxC F1s Subsampled")
+  dt3 <- data.table(readRDS("/scratch/csm6hg/data/AxC_Nolab_tot_het_withmet.rds"), exp="Wild AxC F1s")
+  dt4 <- data.table(readRDS("/scratch/csm6hg/data/CxC_tot_het_withmet.rds"), exp="Lab Selfed C F1s")
+  
+  dat <- data.table(rbind(dt1, dt2, dt3, dt4))
+  
   dat[,geno:="hom"]
   dat[af.dos>.01 & af.dos<.99, geno:="het"]
   dat[,rd:=(dos.ref + dos.alt)]
@@ -21,13 +27,12 @@
   # Add metadata 
   fin <- data.table(read.csv("/project/berglandlab/connor/metadata/samples.9.8.22.csv"))
   dat <- data.table(dat %>% left_join(fin %>% select(c(id,WildSequenced,year,pondID)), by=c("Sample"="id")))
-  
-  # Restrict to Wild-caught F1s
-  dat <- data.table(dat[WildSequenced==1])
-
+ 
   # Restrict to conservative TSP set
   con.tsp <- data.table(readRDS("/scratch/csm6hg/data/unchanged_SNPs_across_assembly.RDS"))
-  dat <- dat[ch %in% con.tsp$ch]
+  dat <- data.table(dat[ch %in% con.tsp$ch] %>% 
+              mutate(snpset=case_when(classified=="shared_poly"~"TSP",
+                                      classified %in% c("polymorphic_1","polymorphic_2") ~ "Not TSP")))
  
 ### Simulation functions
   
@@ -56,9 +61,9 @@
   }
   
   ### Summarize via gene class version
-  setkey(dat, variant.id)
+  setkey(dat, variant.id.y)
 
-  # Go through 1,000 independent simulations
+  # Go through 100 independent simulations
   o <- foreach(i=0:100) %dopar% {
     message(paste(i, i, sep=" / "))
     if(i==0) {
@@ -70,7 +75,7 @@
                             p=.5),
                     rd=round(mean(rd), -1),
                     perm=i, rdSim=T),
-               list(variant.id, snpset, gene, WildSequenced)]
+               list(variant.id.y, gene, exp)]
 
     } else {
       
@@ -78,81 +83,37 @@
       dat.sim.a <- dat[rd>0 & !col%in%c("intergenic_region", "downstream_gene_variant", "upstream_gene_variant"),
                         list(sim.geno=sim_geno(nAlt=dos.alt, nRef=dos.ref), 
                              rd=dos.alt+dos.ref), 
-                        list(variant.id, Sample, snpset, gene, WildSequenced)]
+                        list(variant.id.y, Sample, gene, exp)]
       
       # Output blueopsin sims
-      #saveRDS(dat.sim.a[gene=='Daphnia11806-RA'], file = "/scratch/csm6hg/data/daphnia11806-ra.sims.rds")
+      #saveRDS(dat.sim.a[gene=='Daphnia11806-RA'], file = "/scratch/csm6hg/data/Crosses.daphnia11806-ra.sims.rds")
       dat.ag <- dat.sim.a[rd>0,list(FIS=fis(nHet=sum(sim.geno=="het"),
                                     nTot=sum(sim.geno=="het") + sum(sim.geno %like% "hom"),
                             p=.5),
                     rd=round(mean(rd), -1),
                     perm=i, rdSim=T),
-               list(variant.id, snpset, gene, WildSequenced)]
+               list(variant.id.y, gene, exp)]
     }
     return(dat.ag)
   }
   
   # Bind output
-  o <- rbindlist(o, fill=T)
+  o.b <- rbindlist(o, fill=T)
   
   # Summarize
-  o.ag <- o[,list(FIS=mean(FIS, na.rm = T), 
+  o.ag <- o.b[,list(FIS=mean(FIS, na.rm = T), 
                   med=median(FIS, na.rm = T),
                   sd=sd(FIS, na.rm = T),
                   lci=quantile(FIS, probs = 0.025, na.rm = T),
                   uci=quantile(FIS, probs = 0.975, na.rm = T),
-                  .N, snpset=paste(sort(unique(snpset)), collapse=";")), 
-            list(gene, perm)]
+                  .N), 
+            list(gene, perm, exp)]
   o.ag[,se:=sd/sqrt(N)]
   
-  # saveRDS(o.ag, file = "/scratch/csm6hg/data/AxC_geneclass_conservative_100boot_Wild_raw.rds")
+  saveRDS(o.ag, file = "/scratch/csm6hg/data/Crosses_geneclass_conservative_100boot_raw.rds")
   
-  o.ag.ag <- o.ag[,list(FIS=mean(FIS, na.rm = T),
-                        med=median(FIS, na.rm = T),
-                        sd=sd(FIS, na.rm = T),
-                        lci=quantile(FIS, probs = 0.025, na.rm = T),
-                        uci=quantile(FIS, probs = 0.975, na.rm = T), 
-                        .N), list(snpset, perm)]
-  o.ag.ag[,se:=sd/sqrt(N)]
-  
-  # Output
-  saveRDS(o.ag.ag, file = "/scratch/csm6hg/data/AxC_geneclass_conservative_100boot_Wild.rds")
-
-  # Add metadata
-  dt <- data.table(o.ag.ag %>% 
-                    mutate(pp=case_when(perm==0~"Empirical",
-                                        !perm==0~"Simulation")))
-  
-  # Plot
-  dt %>% 
-  ggplot(., 
-         aes(x=snpset, 
-             y=FIS, 
-             color=as.factor(pp), 
-             group=perm)) +
-    geom_line() + 
-    geom_point(size=2) +
-    geom_segment(aes(x=snpset, 
-                     xend=snpset, 
-                     y=FIS-2*se, 
-                     yend=FIS+2*se)) + 
-    scale_color_manual(values = c("Empirical"="darkcyan",
-                                 "Simulation"~"brown")) +
-    theme_bw() +
-    labs(x = "", 
-         color = "Read Depth Simulation",
-         y = "FIS") +
-    theme(legend.text = element_text(face="bold", size=16),
-          legend.title = element_text(face="bold", size=18), 
-          strip.text = element_text(face="bold", size=18), 
-          axis.text.x = element_text(face="bold", size=18),
-          axis.text.y = element_text(face="bold", size=18),
-          axis.title.x = element_text(face="bold", size=18),
-          axis.title.y = element_text(face="bold", size=18),
-          axis.title = element_text(face="bold", size=20))
-  
-  ### Other testing
   # Simulation given read depth - and all genotypes are heterozygous
+  
   sim_geno_het <- function(nAlt, nRef, rdSim=T) {
     # nAlt=10;nRef=0
     # first, sample genotype
@@ -181,14 +142,22 @@
     # Simulate w/read depth
     dat.sim.a <- dat[rd>0 & !col%in%c("intergenic_region", "downstream_gene_variant", "upstream_gene_variant"),
                      list(sim.geno=sim_geno_het(nAlt=dos.alt, nRef=dos.ref), 
-                          rd=dos.alt+dos.ref), 
-                     list(variant.id, Sample, snpset, gene)]
+                          rd=dos.alt+dos.ref,
+                          perm=i), 
+                     list(variant.id.y, Sample, snpset, gene, exp)]
   }
   
   o.test <- rbindlist(o.hom)
   
-  blop.sum <- o.test%>% group_by(snpset) %>% summarize(num=n())  
-  blop <- data.table(o.test %>% group_by(snpset, sim.geno) %>% summarize(y=n()) %>% left_join(blop.sum) %>% 
+  blop.sum <- o.test[gene=="Daphnia11806-RA"] %>% 
+    group_by(variant.id.y, snpset, exp) %>% 
+    mutate(num=n()) %>%
+    group_by(variant.id.y, snpset, exp, sim.geno) %>% 
+    summarize(prop=n()/num)
+  
+  
+  blop <- data.table(o.test[gene=="Daphnia11806-RA"] %>% 
+                       group_by(variant.id.y, snpset, sim.geno, exp) %>% summarize(y=n()) %>% left_join(blop.sum) %>% 
                        mutate(y.prop=y/num*100,
                               snpset=case_when(snpset=="TSP"~"Sim. TSP",
                                                snpset=="Not TSP"~"Sim. Not TSP"),
