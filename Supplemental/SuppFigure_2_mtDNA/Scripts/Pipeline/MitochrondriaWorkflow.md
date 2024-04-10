@@ -1,27 +1,37 @@
-# This creates the mitochondrial tree for the Daphnia pulex species complex
-# Connor Murray (csm6hg@virginia.edu)
-# 2/20/2023
+# Mitochondrial Tree Creation for the *Daphnia pulex* Species Complex
 
-## Creates sample list with locations of files etc:
-### 0.parameterListGenerator.R
+**Author:** Connor Murray   
+**Date:** 4/10/2024
 
-## Downloads and maps samples to their respective reference genome. Outputs consensus mtDNA fasta for each individual:
-### 1.DownloadMapMitochondria.slurm
+## Description:
 
-## Aligns protein-coding regions across genomes. Makes GFF files for future use.
-### 2.ProteinExonerateGenomes.md
+This repository contains scripts and workflows to create a mitochondrial tree for the *Daphnia pulex* species complex.
 
-## Makes gene-level fastas across all samples. Uses IQTREE to make both: 1) individual gene trees and 2) mitochondrial genome tree. Outgroup=European Daphnia magna
-### 3.Concatenate_Genomes_align.sh
+## Workflow Overview:
 
-## Plots mtDNA tree.
-### 4.AnalysisTrees.R
+1. **parameterListGenerator.R**  
+   Creates a sample list with locations of files etc.
 
-### Finalized tree for protein-coding mtDNA:
-<img src="https://user-images.githubusercontent.com/55203772/220213780-4afc4091-430c-4515-ba87-d880e923db1a.png" width="500" height="500">
+2. **DownloadMapMitochondria.sh**  
+   Downloads and maps samples to their respective reference genome. Outputs consensus mtDNA fasta for each individual.
 
-## Conversion between exonerate output and GFF
-### convert_exonerate_gff_to_gff3.py
+3. **ProteinExonerateGenomes.md**  
+   Aligns protein-coding regions across genomes. Makes GFF files for future use.
 
-## Renames fasta headers.
-### RenameIndexFastaHeaders.sh
+4. **Concatenate_Genomes_align.sh**  
+   Makes gene-level fastas across all samples. Uses IQTREE to make both individual gene trees and mitochondrial genome tree. Outgroup is European *Daphnia magna*.
+
+5. **AnalysisTrees.R**  
+   Plots mtDNA tree.
+
+## Finalized Tree for Protein-Coding mtDNA:
+
+![Finalized mtDNA Tree](https://user-images.githubusercontent.com/55203772/220213780-4afc4091-430c-4515-ba87-d880e923db1a.png)
+
+## Additional Scripts:
+
+- **convert_exonerate_gff_to_gff3.py**  
+  Conversion between exonerate output and GFF.
+
+- **RenameIndexFastaHeaders.sh**  
+  Renames fasta headers.
