@@ -1,7 +1,5 @@
 # *Balancing selection and the functional effects of shared polymorphism in cryptic Daphnia species*
-## DOI: TBD
-
-**Date: April 8th, 2024**
+## BioRxiv DOI: https://doi.org/10.1101/2024.04.16.589693
 
 This repository hosts the scripts utilized for generating and analyzing the shared polymorphism dataset of *Daphnia* species.
 
