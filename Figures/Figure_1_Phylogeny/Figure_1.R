@@ -18,7 +18,6 @@ setwd("/scratch/csm6hg/data/")
 fin <- data.table(read.csv("samples.fin.9.8.22.csv"))
 
 # Open PCA rds
-#ccm_pca <- readRDS("pca.daphnia.genome.filt.mlgsub.outgroup.rds")
 ccm_pca <- readRDS("pca.daphnia.genome.filt.mlgsub.nooutgroup.rds")
 
 # Merge by Sample

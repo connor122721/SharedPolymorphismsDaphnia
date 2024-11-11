@@ -10,17 +10,11 @@ library(tidyverse)
 library(SeqArray)
 library(SNPRelate)
 library(viridis)
-library(doParallel)
 library(car)
 library(DescTools)
-library(ggridges)
 library(readxl)
 library(cowplot)
 require(scales)
-library(topGO)
-library(ermineR)
-library(seqinr)
-library(SNP2GO)
 
 # Working directory
 setwd("/project/berglandlab/connor/")
@@ -30,9 +24,6 @@ fin <- data.table(read.csv("metadata/samples.fin.9.8.22.csv"))
 
 # Executable in command line
 out <- c("new_vcf2/combined.filtsnps10bpindels_snps_filthighmiss.qual.pass.ann.gds")
-
-# Register cores
-#doParallel::registerDoParallel(cores = 10)
 
 # Read in total SNPs
 tot_snps <- data.table(fread("metadata/snps_new"))
@@ -241,163 +232,6 @@ num <- data.table(toti %>%
 # Colors
 cols <- c("Poly Euro."="#999999", "Poly NAm."="#E69F00", "TSP"="#56B4E9")
 
-# MAF sfs 
-maf1 <- {toti %>% 
-    mutate(D.pulex.NorthAmerica=RoundTo(Daphnia.pulex.NorthAmerica, 0.01, "floor"),
-           D.pulex.Europe=RoundTo(Daphnia.pulex.Europe, 0.01, "floor")) %>% 
-    pivot_longer(cols = c("D.pulex.NorthAmerica", "D.pulex.Europe")) %>%
-    group_by(value, name, classified) %>% 
-    summarize(n.snps=length(unique(variant.id))) %>% 
-    left_join(num, by=c("classified")) %>% 
-    filter(classified %in% c("shared_poly", "polymorphic_1", "polymorphic_2") & 
-             !c(n.snps==n.snps.tot) & value>0.05) %>% 
-    mutate(classified = case_when(classified=="shared_poly" ~ "TSP",
-                                  classified=="polymorphic_2" ~ "Poly Euro.",
-                                  classified=="polymorphic_1" ~ "Poly NAm."),
-           n.stan=(n.snps/n.snps.tot)) %>% 
-    ggplot(., 
-           aes(x=value,
-               y=n.stan,
-               fill=classified
-           )) + 
-    facet_wrap(~name, nrow = 2) +
-    #geom_col(position=position_dodge()) +
-    geom_line(aes(x=value, y=n.stan, color=classified), size=2.2) +
-    theme_classic() +
-    scale_fill_manual(values=cols) +
-    scale_color_manual(values=cols) +
-    labs(x="Minor Allele Frequency",
-         fill="SNP Category",
-         y="Proportion of SNPs") +
-    theme(strip.text = element_text(face="bold.italic", size=20),
-          title = element_text(face="bold.italic", size=20),
-          legend.text = element_text(face="bold", size=14),
-          legend.title = element_text(face="bold", size=16),
-          axis.text.x = element_text(face="bold", size=18),
-          axis.text.y = element_text(face="bold", size=18),
-          axis.title.x = element_text(face="bold", size=20),
-          axis.title.y = element_text(face="bold", size=20),
-          axis.title = element_text(face="bold", size=20))}
-
-# Inset sfs Europe
-sfs1 <- {toti %>% 
-    mutate(D.pulex.NorthAmerica=RoundTo(Daphnia.pulex.NorthAmerica, 0.01, "floor"),
-           D.pulex.Europe=RoundTo(Daphnia.pulex.Europe, 0.01, "floor")) %>% 
-    pivot_longer(cols = c("D.pulex.NorthAmerica", "D.pulex.Europe")) %>%
-    group_by(value, name, classified) %>% 
-    summarize(n.snps=length(unique(variant.id))) %>% 
-    left_join(num, by=c("classified")) %>% 
-    filter(classified %in% c("shared_poly", "polymorphic_2") &
-             name=="D.pulex.Europe") %>% 
-    mutate(classified = case_when(classified=="shared_poly" ~ "TSP",
-                                  classified=="polymorphic_2" ~ "Poly Euro.",
-                                  classified=="polymorphic_1" ~ "Poly NAm."),
-           n.stan=(n.snps/n.snps.tot)) %>% 
-    ggplot(., 
-           aes(x=value,
-               y=n.stan,
-               fill=classified
-           )) + 
-    #facet_grid(name~"") +
-    geom_col(position=position_dodge()) + 
-    scale_fill_manual(values=cols) +
-    theme_classic() +
-    labs(x="",
-         fill="",
-         y="") +
-    theme(strip.text = element_text(face="bold", size=16),
-          plot.background = element_blank(),
-          title = element_text(face="bold.italic", size=20), 
-          legend.position = "none",
-          legend.text = element_text(face="bold", size=14),
-          legend.title = element_text(face="bold", size=16),
-          axis.text.x = element_text(face="bold", size=18),
-          axis.text.y = element_text(face="bold", size=18),
-          axis.title.x = element_text(face="bold", size=20),
-          axis.title.y = element_text(face="bold", size=20),
-          axis.title = element_text(face="bold", size=20))}
-
-# Inset sfs Nam
-sfs2 <- {toti %>% 
-    mutate(D.pulex.NorthAmerica=RoundTo(Daphnia.pulex.NorthAmerica, 0.01, "floor"),
-           D.pulex.Europe=RoundTo(Daphnia.pulex.Europe, 0.01, "floor")) %>% 
-    pivot_longer(cols = c("D.pulex.NorthAmerica", "D.pulex.Europe")) %>%
-    group_by(value, name, classified) %>% 
-    summarize(n.snps=length(unique(variant.id))) %>% 
-    left_join(num, by=c("classified")) %>% 
-    filter(classified %in% c("shared_poly", "polymorphic_1") &
-             name=="D.pulex.NorthAmerica" &
-             !c(n.snps==n.snps.tot)) %>% 
-    mutate(classified = case_when(classified=="shared_poly" ~ "TSP",
-                                  classified=="polymorphic_2" ~ "Poly Euro.",
-                                  classified=="polymorphic_1" ~ "Poly NAm.")) %>% 
-    ggplot(., 
-           aes(x=value,
-               y=n.snps/n.snps.tot,
-               fill=classified
-           )) + 
-    #facet_grid(name~"") +
-    geom_col(position=position_dodge()) +
-    scale_fill_manual(values=cols) +
-    theme_classic() +
-    labs(x="",
-         fill="",
-         y="") +
-    theme(strip.text = element_text(face="bold", size=16),
-          title = element_text(face="bold.italic", size=20),
-          plot.background = element_blank(),
-          legend.text = element_text(face="bold", size=14),
-          legend.position = "none",
-          legend.title = element_text(face="bold", size=16),
-          axis.text.x = element_text(face="bold", size=18),
-          axis.text.y = element_text(face="bold", size=18),
-          axis.title.x = element_text(face="bold", size=20),
-          axis.title.y = element_text(face="bold", size=20),
-          axis.title = element_text(face="bold", size=20))}
-
-### Pie chart ###
-pp <- data.table(rbind(data.table(toti[!classified%in%c("invariant", "filtered")], 
-                                  snpset="Genome-wide", 
-                                  denom=length(unique(toti[!classified%in%c("invariant", "filtered")]$variant.id))), 
-                       data.table(buscoi[!classified%in%c("invariant", "filtered")], 
-                                  snpset="BUSCO Genes", 
-                                  denom=length(unique(buscoi[!classified%in%c("invariant", "filtered")]$variant.id)))))
-
-# Fraction of genome SNPs
-pie <- {pp[snpset=="Genome-wide"] %>% 
-    mutate(classified = case_when(classified=="shared_poly" ~ "TSP",
-                                  classified=="polymorphic_1" ~ "Poly Euro.",
-                                  classified=="polymorphic_2" ~ "Poly NAm.",
-                                  classified=="fixed" ~ "Fixed")) %>%
-    group_by(snpset, classified, denom) %>% 
-    summarize(n.snps=length(unique(variant.id))) %>%
-    ggplot(., 
-           aes(x=1,
-               y=n.snps/denom,
-               fill=classified
-           )) + 
-    geom_bar(stat="identity", width=1, color="white") +
-    geom_text(aes(label=paste(round((n.snps/denom)*100, 1),
-                              "%", " (", n.snps, ")", sep="")),
-              position = position_stack(vjust = 0.5), size=14) +
-    coord_polar("y", start=0) +
-    theme_bw() +
-    #facet_wrap(~snpset, nrow = 2) +
-    scale_fill_manual(values=c("Poly Euro."="#999999", "Poly NAm."="#E69F00", "TSP"="#56B4E9",
-                               "Fixed" = "Black", "Invar."="Purple")) +
-    labs(x="",
-         fill="Loci Category",
-         y="") +
-    theme(text = element_text(face="bold", size=24),
-          strip.text = element_text(face="bold", size=20),
-          legend.text = element_text(face="bold", size=24),
-          legend.title = element_text(face="bold", size=26),
-          axis.text.x = element_blank(),
-          axis.ticks = element_blank(),
-          axis.text.y = element_blank(),
-          axis.title.x = element_blank(),
-          axis.title.y = element_blank())}
-
 # Minor alleles 
 maf <- unique(c(seq(from=0, to=0.1, length.out=10),
               seq(from=0.1, to=0.4, length.out=5),
@@ -495,32 +329,6 @@ m <- foreach(i=1:length(maf), .combine = "rbind", .errorhandling = "remove") %do
   return(jj)
 }
 
-# Odds ratio across minor allele frequency cutoffs
-ods <- {m %>% 
-  ggplot(., 
-       aes(x=maf, 
-           y=log2(odd), 
-           ymin=log2(lower.p),
-           ymax=log2(upper.p),
-           color=signif)) + 
-  geom_pointrange(size=2) + 
-  geom_hline(yintercept = 0, linetype=2, size=1.2) +
-  facet_wrap(~snpset, nrow = 2, scales = 'free') +
-  theme_classic() +
-  labs(x="Minor allele frequency (MAF)",
-       color="Significance",
-       y="log2(Odds ratio)") +
-  theme(strip.text = element_text(face="bold", size=18),
-        title = element_text(face="bold.italic", size=20),
-        legend.text = element_text(face="bold", size=26),
-        legend.title = element_text(face="bold", size=26),
-        axis.text.x = element_text(face="bold", size=26),
-        axis.text.y = element_text(face="bold", size=26),
-        axis.title.x = element_text(face="bold", size=30),
-        axis.title.y = element_text(face="bold", size=30),
-        axis.title = element_text(face="bold", size=26)) +
-  scale_color_manual(values = c("Not Sig."="grey", "Sig."="#0072B2"))}
-
 # Ods ratio calculation
 ods_calc <- function(dtf, poly, maf.l, snpy) {
   #dtf=busco; poly="polymorphic_2"; maf.l=0; snpy="BUSCO Genes"
@@ -564,95 +372,6 @@ oddy <- data.table(rbind(ods_calc(dtf=busco, poly = "polymorphic_1", maf.l=0, sn
 
 #saveRDS(oddy, file="/scratch/csm6hg/data/odds_ratio_conservative.rds")
 
-# Alpha Genome and BUSCO-wide
-ods.g <- {oddy %>%
-  ggplot(., 
-         aes(x=poly, 
-             y=log2(odd), 
-             ymin=log2(lower.p),
-             ymax=log2(upper.p),
-             color=snpset)) + 
-  geom_pointrange(size=2, 
-                  position=position_dodge(width=0.4)) + 
-  geom_hline(yintercept = 0, linetype=2, size=1.2) +
-  theme_bw() +
-  labs(x="",
-       color="",
-       y=expression(~bold("log[2](Odds Ratio)"))) +
-  theme(strip.text = element_text(face="bold", size=18),
-        title = element_text(face="bold.italic", size=20),
-        legend.text = element_text(face="bold", size=26),
-        legend.title = element_text(face="bold", size=26),
-        axis.text.x = element_text(face="bold", size=26),
-        axis.text.y = element_text(face="bold", size=26),
-        axis.title.x = element_text(face="bold", size=30),
-        axis.title.y = element_text(face="bold", size=30),
-        axis.title = element_text(face="bold", size=26)) +
-  scale_color_manual(values = c("BUSCO Genes"="deeppink", 
-                                "Genome-wide"="cyan3"))
-}
-  
-pdf("figures/ods_newfilt_points_dodge.pdf", width=8, height=8)
-ods.g
-dev.off()
-
-### Gene by gene odds ratio ###
-
-# Read in gene annotations
-panth <- data.table(read_excel("../daphnia_ref/Daphnia_annotation_PANTHER.xls"))
-colnames(panth)[36:38] <- c("bio_func", "mol_func", "cell_func")
-
-# Identify gene list for snpsets
-gene.tot <- unique(tot$gene)
-
-# Gene analyses
-pro <- read.fasta("/project/berglandlab/Karen/genomefiles/Daphnia.proteins.aed.0.6.fasta", seqtype="AA")
-pro <- data.table(gene=getName(pro), AA.length=getLength(pro))
-pro <- pro[,splice:=tstrsplit(gene, "-")[[2]]]
-
-# Filter before gene analyses
-#totp <- data.table(tot %>% mutate(classified=case_when(Daphnia.pulex.NorthAmerica >= 0.05 & Daphnia.pulex.Europe >= 0.05 ~ 'shared_poly',
-#                                           Daphnia.pulex.NorthAmerica >= 0.05 & Daphnia.pulex.Europe < 0.05 ~ 'polymorphic_1',
-#                                           Daphnia.pulex.NorthAmerica < 0.05 & Daphnia.pulex.Europe >= 0.05 ~ 'polymorphic_2')))
-
-# No filter 
-totp <- tot
-
-# Gene by gene loop
-gene <- foreach(i=1:length(gene.tot), .combine = "rbind", .errorhandling = "remove") %do% {
-  
-  # Message
-  print(paste("Gene #", gene.tot[i], i, sep=" "))
-  
-  # Filter
-  totl <- data.table(totp[gene==gene.tot[i]] %>%
-                mutate(classified=case_when(classified %in% c("polymorphic_1",
-                                                              "polymorphic_2") ~ "Poly.",
-                                            classified=="shared_poly" ~ "TSP")))
-  
-  # Summarize number of snps
-  jj <- data.table(data.table(snpset="Genome-wide",
-                   gene=gene.tot[i],
-                   Polysyn=length(totl[simpleAnnot=="Syn"][classified=="Poly."]$variant.id)+1,
-                   TSPsyn=length(totl[simpleAnnot=="Syn"][classified=="TSP"]$variant.id)+1,
-                   Polyns=length(totl[simpleAnnot=="NS"][classified=="Poly."]$variant.id)+1,
-                   TSPns=length(totl[simpleAnnot=="NS"][classified=="TSP"]$variant.id)+1,
-                   PolySNP=length(totl[classified=="Poly."][simpleAnnot %in% c("NS", "Syn")]$variant.id),
-                   TSPSNP=length(totl[classified=="TSP"][simpleAnnot %in% c("NS", "Syn")]$variant.id),
-                   tot_snp=length(totl$variant.id))) 
-
-  # Summarize
-  jj <- data.table(jj %>% 
-            mutate(pnps.poly = Polyns/Polysyn,
-                   pnps.tsp = TSPns/TSPsyn))
-  
-  # Finish
-  return(jj)
-}
-
-# saveRDS(gene, "data/gene.filt.pnps.nomaf.haldane_1.rds")
-gene <- readRDS("data/gene.filt.pnps.nomaf.haldane_1.rds")
-
 # Odds ratio function
 odds_ratio <- function(poly_syn, poly_ns, tsp_syn, tsp_ns) {
   # poly_syn=33; tsp_syn=1; poly_ns=18; tsp_ns=1
@@ -678,90 +397,3 @@ gene.odd <- data.table(gene %>%
 gene.fin <- data.table(gene %>% 
              full_join(gene.odd, by=c('gene', 'snpset')) %>% 
              left_join(pro, by=c("gene")))
-
-# Write gene data
-# write.table(gene.fin, file = "data/gene_fin_ods.txt", quote = F, row.names = F, sep = "\t")
-
-# Plot pnps and odds ratio
-gene.odd.plot <- {gene.fin[PolySNP>0][TSPSNP>0] %>% 
-  ggplot(., 
-         aes(x=log10(pnps.tsp), 
-             y=log10(pnps.poly),
-             color=log2(odd))) +
-  geom_point(size=3, alpha=0.7) +
-  geom_smooth(se=F, method="lm", color="black", size=1.2, linetype=2) +
-  #facet_wrap(~snpset, nrow=2) +
-  scale_color_viridis(option="viridis") +
-  theme_bw() +
-  labs(x="log10(Trans-species polymorphism pN/pS)",
-       y="log10(Polymorphic pN/pS)",
-       color="log2(Odds ratio)") +
-  theme(strip.text = element_text(face="bold", size=18),
-        title = element_text(face="bold.italic", size=20),
-        legend.text = element_text(face="bold", size=16),
-        legend.title = element_text(face="bold", size=16),
-        axis.text.x = element_text(face="bold", size=18),
-        axis.text.y = element_text(face="bold", size=18),
-        axis.title.x = element_text(face="bold", size=20),
-        axis.title.y = element_text(face="bold", size=20),
-        axis.title = element_text(face="bold", size=20))}
-
-# Classify different genes
-geney <- data.table(gene.fin[PolySNP>2][TSPSNP>2] %>% 
-  mutate(imm=case_when(gene %in% unique(panth[bio_func %like% "imm"]$qseqid) ~ "Immune",
-                       gene %in% unique(panth[bio_func %like% "vir"]$qsequd) ~ "Immune",
-                       gene %in% unique(panth[bio_func %like% "defense"]$qsequd) ~ "Immune",
-                       TRUE ~ "All Genes")))
-
-gene.odd.plot <- {geney[TSPsyn>1][TSPns>1] %>% 
-    ggplot(., 
-           aes(x=pnps.tsp, 
-               y=imm,
-               fill=imm)) +
-    viridis::scale_color_viridis() +
-    geom_boxplot(alpha=0.6) +
-    theme_bw() +
-    labs(x="log10(Trans-species polymorphism pN/pS)",
-         y="Gene Categories",
-         color="log10(Number of TSPs)") +
-    theme(strip.text = element_text(face="bold", size=18),
-          title = element_text(face="bold.italic", size=20),
-          legend.text = element_text(face="bold", size=16),
-          legend.title = element_text(face="bold", size=16),
-          axis.text.x = element_text(face="bold", size=18),
-          axis.text.y = element_text(face="bold", size=18),
-          axis.title.x = element_text(face="bold", size=20),
-          axis.title.y = element_text(face="bold", size=20),
-          axis.title = element_text(face="bold", size=20))}
-
-### Plotting and output ###
-pdf("figures/shared_2dsfs_alt_new2.pdf", width = 12, height = 10)
-sfs2d
-dev.off()
-
-pdf(file="figures/fsfs_genome_tsp_new.pdf", width=10, height=8)
-ggdraw() +
-  draw_plot(maf1) +
-  draw_plot(sfs1, x = 0.3, y = 0.65, width = 0.4, height = 0.22) +
-  draw_plot(sfs2, x = 0.3, y = 0.2, width = 0.4, height = 0.22)
-dev.off()
-
-pdf("figures/odds_maf_busco_alt_new.pdf", width=16, height=8)
-ods
-dev.off()
-
-pdf("figures/pie_snps_genome.pdf")
-pie
-dev.off()
-
-pdf("figures/gene_odd_pnps.pdf", width=8, height=8)
-gene.odd.plot
-dev.off()
-
-pdf("figures/gene_tsp_pnps.pdf")
-gene.tsp.plot
-dev.off()
-
-pdf("figures/gene_pnps.pdf")
-gene.pnps
-dev.off()

@@ -10,13 +10,13 @@ library(colortools)
 library(forcats)
 
 # Working directory
-setwd('/scratch/csm6hg/oldscratch/daphnia_phylo/admixture')
+setwd('/scratch/csm6hg/oldscratch/daphnia_phylo/admixture/data_sub')
 
 # Metadata
 meta <- data.table(fread("/project/berglandlab/connor/metadata/samples.fin.9.8.22.csv"))
 
 # MSMC output files
-file1 <- list.files(path = "data",
+file1 <- list.files(path = "data_sub",
                     pattern = "sub.out$",
                     recursive = TRUE)
 
@@ -33,10 +33,8 @@ fin.dt <- foreach(i=2:23, .combine = "rbind", .errorhandling = "remove") %do% {
                                      sep="")))
   
   # Metadata from plink
-  indTable <- data.table(read.table(paste("daphnia.new.sub.fam", 
-                                          sep=""),
-                                    col.names = c("Sample", "rep", "v1", "v2", "v3", "v4")))
-  
+  indTable <- data.table(read.table("../daphnia.new.sub.fam",
+                         col.names = c("Sample", "rep", "v1", "v2", "v3", "v4")))
   
   # Merge with metadata
   dt <- data.table(cbind(tbl, indTable %>% 
@@ -65,16 +63,19 @@ fin.dt <- foreach(i=2:23, .combine = "rbind", .errorhandling = "remove") %do% {
   
 }
 
+# Output
+write.csv(fin.dt, file = "/project/berglandlab/connor/data/admix.sub.data.k2_23.csv")
+
 # Create labels
 lab <- data.table(lab.cont = unique(paste(fin.dt$Species, fin.dt$Continent, sep=".")))
 
 #pdf("admixture.new.sub.k8.pdf", width = 15, height = 8)
 
 # Plot K of various admixtures
-fin.dt[k %in% c(8)] %>% 
+admix <- {fin.dt[k %in% c(9)] %>% 
   mutate(kk = paste("K=", k, sep="")) %>% 
   mutate(kk=factor(kk, 
-                   levels = c("K=8"))) %>% 
+                   levels = c("K=9"))) %>% 
   ggplot(., 
          aes(x = factor(id), 
              y = value, 
@@ -103,7 +104,7 @@ fin.dt[k %in% c(8)] %>%
         axis.text.y = element_blank(),
         axis.title.x = element_text(face = "bold", size=18),
         axis.title.y = element_text(face="bold", size=18),
-        axis.title = element_text(face="bold", size=20)) 
+        axis.title = element_text(face="bold", size=20))}
 
 dev.off()
 
