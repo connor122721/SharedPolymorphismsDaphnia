@@ -27,7 +27,7 @@ chromi=args[3]
 ##############
 
 # Please Fill all value
-mu=5.69*10^(-9)   # Mutation rate per position per generation 
+mu=4.33*10^(-9)   # Mutation rate per position per generation 
 r=8*10^(-8)   # recombination rate per position per generation 
 rho=r/mu # ratio recombination/mutation 
 M=2 # Number of haplotypes
@@ -35,8 +35,8 @@ M=2 # Number of haplotypes
 # Set one to TRUE (rest to FALSE) #
 ###################################
 ER=F # True to estimate recombination rate
-SF=T # True to estimate selfing rate
-SB=F # True to estimate germination rate
+SF=F # True to estimate selfing rate
+SB=T # True to estimate germination rate
 
 # Set boundaries
 BoxB=c(0.05, 1) #  min and max value of germination rate 

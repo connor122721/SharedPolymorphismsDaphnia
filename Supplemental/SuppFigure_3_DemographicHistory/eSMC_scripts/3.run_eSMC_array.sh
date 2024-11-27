@@ -22,7 +22,7 @@ wd="/project/berglandlab/connor"
 cd ${wd}
 
 # Samples
-paramFile=${wd}/eSMC.2.list
+paramFile=${wd}/eSMC.1.list
 
 # Extract constants from parameter file
 file=$( sed -n ${SLURM_ARRAY_TASK_ID}p $paramFile | cut -f1 )
@@ -31,7 +31,7 @@ sample=$( sed -n ${SLURM_ARRAY_TASK_ID}p $paramFile | cut -f4 )
 echo ${sample} ${chrom}
 
 # Run script
-Rscript run_eSMC.R \
+Rscript 2a.run_eSMC.R \
 ${file} \
 ${sample} \
 ${chrom}

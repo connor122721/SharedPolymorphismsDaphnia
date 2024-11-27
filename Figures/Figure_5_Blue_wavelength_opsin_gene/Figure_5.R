@@ -20,7 +20,7 @@ library(patchwork)
 library(adegenet)
 
 # Working directory
-setwd("/project/berglandlab/connor/")
+setwd("/project/berglandlab/connor/backup_project")
 
 # Metadata
 fin <- data.table(read.csv("metadata/samples.fin.9.8.22.csv"))
@@ -41,25 +41,25 @@ extract_attributes <- function(gtf_attributes, att_of_interest){
 gene.gtf$gene <- unlist(str_remove_all(lapply(gene.gtf$V9, extract_attributes, "transcript_id"), pattern = ";"))
 
 # SNP metadata
-tot <- readRDS(file="/project/berglandlab/connor/data/tot_snpsclassified_0.01thresh.RDS")
+tot <- readRDS(file="/project/berglandlab/connor/backup_project/data/tot_snpsclassified_0.01thresh.RDS")
 
 # Trees
-files.tree <- system("ls -f -R /project/berglandlab/connor/candgene/tree/*treefile", intern = T)
+files.tree <- "/project/berglandlab/connor/backup_project/candgene/tree/Scaffold_1931_HRSCAF_2197.6350219.6351796.treefile"
 
-  # Read tree
-  tre.n <- read.tree(files.tree[i])
+# Read tree
+tre.n <- read.tree(files.tree)
   
-  # Only include samples in metadata
-  tre.n <- keep.tip(phy = tre.n, tip = tre.n$tip.label[!tre.n$tip.label %like% "D.magna"])
+# Only include samples in metadata
+tre.n <- keep.tip(phy = tre.n, tip = tre.n$tip.label[!tre.n$tip.label %like% "D.magna"])
   
-  # Color wheel
-  color <- wheel(color = "tomato", num = 15)
+# Color wheel
+color <- wheel(color = "tomato", num = 15)
   
-  # Open tree data
-  tree <- data.table(File=as.character(tre.n$tip.label))
+# Open tree data
+tree <- data.table(File=as.character(tre.n$tip.label))
   
-  # Extract naming
-  tree <- data.table(tree %>%
+# Extract naming
+tree <- data.table(tree %>%
                   mutate(Continent=tstrsplit(File,"_", fixed=T)[[1]],
                     Sample=as.character(tstrsplit(File, ".", fixed=T)[[1]]),
                     haplotype=stri_reverse(tstrsplit(stri_reverse(File), ".", fixed=T)[[4]]),
@@ -74,19 +74,19 @@ files.tree <- system("ls -f -R /project/berglandlab/connor/candgene/tree/*treefi
                                             str_remove_all(Sample, pattern = "NorthAmerica_"),
                                           TRUE ~ Sample)))
   
-  # Any missing comparisons?
-  missing <- tree$Sample[which(unique(tree$Sample) %in% unique(fin$Sample)==F)]
+# Any missing comparisons?
+missing <- tree$Sample[which(unique(tree$Sample) %in% unique(fin$Sample)==F)]
   
-  # Merge with metadata
-  tree <- data.table(rbind(na.omit(tree %>%
+# Merge with metadata
+tree <- data.table(rbind(na.omit(tree %>%
                                left_join(fin %>%
                                            select(Sample, Continent, cont, Species, Origin) %>%
                                            mutate(Sample=as.character(Sample)), by=c("Sample", "Continent"))) %>%
                        mutate(sample.n=paste(cont, Sample, sep=".")), 
             tree[File=="D.magna"], fill=T))
   
-  # Color tips by Origin & Continent & Species
-  tips <- data.table(tree %>%
+# Color tips by Origin & Continent & Species
+tips <- data.table(tree %>%
                        mutate(color.con = case_when(Continent == "Europe" ~ color[1],
                                                     Continent == "NorthAmerica" ~ color[5],
                                                     File == "D.magna" ~ "Black"),
@@ -99,18 +99,17 @@ files.tree <- system("ls -f -R /project/berglandlab/connor/candgene/tree/*treefi
                                                     cont == "Daphnia.pulex.Europe" ~ color[5],
                                                     File == "D.magna" ~ "Black")))
   
-  # Extract name
-  name.fasta <- unique(tree$Region)[1]
-  gene.name <- unique(gene.gtf[chrom == tstrsplit(unique(tree$Region)[1], ".", 
+# Extract name
+name.fasta <- unique(tree$Region)[1]
+gene.name <- unique(gene.gtf[chrom == tstrsplit(unique(tree$Region)[1], ".", 
               fixed=T)[[1]]][start==unique(tree$Start)[1]][stop==unique(tree$Stop)[1]]$gene)
   
-  # Read in aligned haplotypes
-  msa <- fasta2genlight(paste("candgene/tree/", name.fasta, ".aln.fa", sep=""))
-  msa.dt <- data.frame(tab(msa), sampleid = rownames(tab(msa)))
-  #saveRDS(msa.dt, file = "data/msadt_Daphnia00056-RA.rds")
+# Read in aligned haplotypes
+msa <- fasta2genlight(paste("candgene/tree/", name.fasta, ".aln.fa", sep=""))
+msa.dt <- data.frame(tab(msa), sampleid = rownames(tab(msa)))
   
-  # Wide to long format
-  msa.dt2 <- data.table(msa.dt %>%  
+# Wide to long format
+msa.dt2 <- data.table(msa.dt %>%  
         separate(sampleid, remove = F, into = c("sp"), sep = "_") %>% 
         melt(id = c("sampleid", "sp")) %>% 
         mutate(Continent=tstrsplit(sampleid,"_", fixed=T)[[1]],
@@ -133,36 +132,10 @@ files.tree <- system("ls -f -R /project/berglandlab/connor/candgene/tree/*treefi
         mutate(position=(variant+Start-1)) %>% 
         left_join(tot %>% select(-c(variant.id, col)), by=c("position", "chrom")))
   
-  ### Gene tree and MSA ###
+### Gene tree and MSA ###
   
-  # Candidate gene msa plot
-  msa.plot <- {data.frame(msa.dt[-c(dim(msa.dt)[2])], sampleid = rownames(tab(msa))) %>% 
-    separate(sampleid, remove = F, into = c("sp"), sep = "_") %>% 
-    melt(id = c("sampleid", "sp") ) %>% 
-    ggplot(.,
-           aes(
-      x=variable,
-      y=sampleid,
-      fill = as.factor(value))) +
-    geom_tile() +
-    labs(x="", 
-         y="", 
-         fill="") +
-    ggtitle(name.fasta) +
-    theme_classic() +
-    facet_wrap(sp~., scales = "free", ncol = 1) +
-    scale_fill_manual(values = c("skyblue", "brown")) +
-    theme(title = element_text(face="bold", size=15),
-          legend.text = element_text(face="bold.italic", size=16),
-          legend.background = element_blank(),
-          text = element_text(face="bold.italic", size=16),
-          axis.text.x=element_text(face="bold", size=14, angle=-40),
-          axis.ticks.x=element_blank(),
-          axis.text.y=element_blank(),
-          axis.ticks.y=element_blank())}
-  
-  # Tree plot
-  p <- {
+# Tree plot
+p <- {
     ggtree(tre.n,
               size=1.7, 
               root.position = 1) %<+% 
@@ -178,21 +151,20 @@ files.tree <- system("ls -f -R /project/berglandlab/connor/candgene/tree/*treefi
                legend.position='none',
                legend.text = element_text(face="bold.italic", size=16),
                legend.background = element_blank())
-  }
+}
   
-  # Tree + MSA plot
-  pp <- gheatmap(p, 
+# Tree + MSA plot
+pp <- gheatmap(p, 
                  msa.dt[-c(dim(msa.dt)[2])],
                  colnames = F, 
                  width=1,
                  high="purple",
                  low="orange")
   
-  ### Gene structure ###
+### Gene structure ###
   
-  # Gene structure plot
-  #saveRDS(gene.gtf[gene==gene.name][sec=="exon"], file="data/Daphnia00056-RA.exon.list.rds")
-  gene.struc <- {gene.gtf[gene==gene.name][sec=="exon"] %>% 
+# Gene structure plot
+gene.struc <- {gene.gtf[gene==gene.name][sec=="exon"] %>% 
     ggplot(aes(start/1000, y=paste("Exon", start, sep="_"))) +
     geom_linerange(aes(xmin=start/1000, xmax=stop/1000), size=4, color='blueviolet') +
     geom_vline(xintercept = 6350433/1000, linetype=2, size=1.5, color="red") +
@@ -209,24 +181,24 @@ files.tree <- system("ls -f -R /project/berglandlab/connor/candgene/tree/*treefi
           axis.text.y = element_text(face="bold", size=18),
           axis.title.x = element_text(face="bold", size=20),
           axis.title.y = element_text(face="bold", size=20),
-          axis.title = element_text(face="bold", size=20))}
+          axis.title = element_text(face="bold", size=20))
+}
   
-  ### LD Matrix ###
+### LD Matrix ###
   
-  # Read in LD matrix
-  ld.file <- system(paste("ls -f -R /scratch/csm6hg/matrix/pulex_euro_*", 
-                          gene.name, "*.ld*", sep=""), intern = T)
-  
-  # Read in matrix
-  ld <- data.table(fread(ld.file))
-  ld <- ld %>% 
-    left_join(tot[chrom==unique(ld$CHR_A)] %>% select(classified_A=classified, simpleAnnot_A=simpleAnnot, BP_A=position)) %>% 
-    left_join(tot[chrom==unique(ld$CHR_A)] %>% select(classified_B=classified, simpleAnnot_B=simpleAnnot, BP_B=position))
-  
-  #saveRDS(ld, file = "data/LD_Daphnia00056-RA.euro.rds")
-  
-  # Plot LD Matrix
-  ld.plot <- {ld[SNP_B %in% SNP_A] %>%
+# Read in LD matrix
+ld.file <- "/project/berglandlab/connor/backup_project/data/LD_Daphnia11806-RA.euro.rds"
+
+# Read in matrix
+ld <- data.table(readRDS(ld.file))
+ld <- ld %>% 
+    left_join(tot[chrom==unique(ld$CHR_A)] %>% 
+                select(classified_A=classified, simpleAnnot_A=simpleAnnot, BP_A=position, geneA=gene)) %>% 
+    left_join(tot[chrom==unique(ld$CHR_A)] %>% 
+                select(classified_B=classified, simpleAnnot_B=simpleAnnot, BP_B=position, geneB=gene))
+
+# Plot LD Matrix
+ld.plot <- {ld[SNP_B %in% SNP_A] %>%
       ggplot(.) + 
       geom_tile(aes(x=SNP_A, y=SNP_B, fill=R2)) +
       scale_fill_viridis(option = "plasma") + 
@@ -242,9 +214,12 @@ files.tree <- system("ls -f -R /project/berglandlab/connor/candgene/tree/*treefi
             axis.text.y = element_blank(),
             axis.title.x = element_text(face="bold", size=18),
             axis.title.y = element_text(face="bold", size=18),
-            axis.title = element_text(face="bold", size=20))}
+            axis.title = element_text(face="bold", size=20))
+}
   
-  ld.axis.x <- {ld[SNP_B %in% SNP_A] %>% 
+ld.axis.x <- {
+  
+  ld[SNP_B %in% SNP_A] %>% 
     group_by(BP_A) %>% 
     distinct(classified_A) %>%
     mutate(classified_A=case_when(classified_A=="shared_poly" ~ "TSP",
@@ -265,9 +240,10 @@ files.tree <- system("ls -f -R /project/berglandlab/connor/candgene/tree/*treefi
           axis.text.y = element_blank(),
           axis.title.x = element_text(face="bold", size=18),
           axis.title.y = element_text(face="bold", size=18),
-          axis.title = element_text(face="bold", size=20))}
-  
-  ld.axis.y <- {ld[SNP_B %in% SNP_A] %>% 
+          axis.title = element_text(face="bold", size=20))
+}
+
+ld.axis.y <- {ld[SNP_B %in% SNP_A] %>% 
       group_by(BP_B) %>% 
       distinct(classified_B) %>%
       mutate(classified_B=case_when(classified_B=="shared_poly" ~ "TSP",
@@ -291,19 +267,33 @@ files.tree <- system("ls -f -R /project/berglandlab/connor/candgene/tree/*treefi
             axis.text.y = element_text(face="bold", size=18),
             axis.title.x = element_text(face="bold", size=18),
             axis.title.y = element_text(face="bold", size=18),
-            axis.title = element_text(face="bold", size=20))}
+            axis.title = element_text(face="bold", size=20))
+}
   
-  # Master LD matrix
-  ld.plot.tot <- { (ld.axis.y + 
+# Master LD matrix
+ld.plot.tot <- { (ld.axis.y + 
                     ld.plot + 
                     plot_spacer() +
                     ld.axis.x + 
                     plot_layout(guides="collect", 
                                 heights = c(1, 0.1),
-                                widths = c(0.1, 1))) }
+                                widths = c(0.1, 1))) 
+}
   
-  ### Output figures ###
-  comp.fig <- { ( gene.struc / ld.plot.tot | pp + 
+### Output figures ###
+comp.fig <- { ( gene.struc / ld.plot.tot | pp + 
                     plot_layout(guides="collect") ) }
-  
-  ggsave(paste("candgene/figs/Daphnia11806-RA.new.pdf", sep=""), comp.fig, width=25, height=16)
+
+ggsave(paste("candgene/figs/Daphnia11806-RA.new.pdf", sep=""), comp.fig, width=25, height=16)
+
+# Exon boundaries
+gene.gtf[gene=="Daphnia11806-RA"][sec=="exon"]
+
+# Large linkage block end
+ld[SNP_B %in% SNP_A][BP_A %in% c(6351162:6351377)][BP_B %in% c(6351162:6351377)]
+block <- data.table(ld[SNP_B %in% SNP_A] %>% 
+  group_by(BP_A) %>% 
+  distinct(classified_A) %>%
+  mutate(classified_A=case_when(classified_A=="shared_poly" ~ "TSP",
+                                classified_A %like% "poly" ~ "Poly.",
+                                TRUE ~ "Other")))

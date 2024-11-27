@@ -1,6 +1,6 @@
 # Trans species polymorphism - FIS
-# 3.22.2024
-# ijob -c 10 --mem=50G -p standard -A berglandlab
+# 11.20.2024
+# Makes Figure 5 - FIS results and Supplemental Figure 5 
 # module load gcc/11.4.0 openmpi/4.1.4 R/4.3.1; R
 
 # Libraries
@@ -10,7 +10,7 @@ library(tidyverse)
 library(patchwork)
 
 # Gene FIS averages
-gene.ag <- data.table(readRDS("/scratch/csm6hg/data/Crosses_geneclass_conservative_100boot_raw.rds"))
+gene.ag <- data.table(readRDS("/scratch/csm6hg/phd/data/Crosses_geneclass_conservative_100boot_raw.rds"))
 
 # Blue opsin wavelength gene FIS
 gene.ag[perm==0][gene %in% "Daphnia11806-RA"]
@@ -27,7 +27,7 @@ gene.ag <- data.table(gene.ag[N>2] %>%
 # Reorder
 gene.ag$sim <- factor(gene.ag$sim, levels = c("Simulation w/RD HWE", "Empirical"))  
 
-# Plot FIS distribution
+# Plot FIS distribution - Create Supplemental Figure 5
 fis.plot <- {
   gene.ag %>% 
     ggplot() +
@@ -87,10 +87,10 @@ ggsave("/scratch/csm6hg/figs/SuppFigure_FIS_dist_crossesAll.pdf", fis.plot2, wid
 ### F1 frequency for genotypes ###
 
 # Data for blue opsin gene
-dt1 <- data.table(readRDS("/scratch/csm6hg/data/AxC_lab_tot_het_withmet.rds"), exp="Lab AxC F1s")
-dt2 <- data.table(readRDS("/scratch/csm6hg/data/AxC_Nolab_subsamp_tot_het_withmet.rds"), exp="Wild AxC F1s Subsampled")
-dt3 <- data.table(readRDS("/scratch/csm6hg/data/AxC_Nolab_tot_het_withmet.rds"), exp="Wild AxC F1s")
-dt4 <- data.table(readRDS("/scratch/csm6hg/data/CxC_tot_het_withmet.rds"), exp="Lab Selfed C F1s")
+dt1 <- data.table(readRDS("/scratch/csm6hg/phd/data/AxC_lab_tot_het_withmet.rds"), exp="Lab AxC F1s")
+dt2 <- data.table(readRDS("/scratch/csm6hg/phd/data/AxC_Nolab_subsamp_tot_het_withmet.rds"), exp="Wild AxC F1s Subsampled")
+dt3 <- data.table(readRDS("/scratch/csm6hg/phd/data/AxC_Nolab_tot_het_withmet.rds"), exp="Wild AxC F1s")
+dt4 <- data.table(readRDS("/scratch/csm6hg/phd/data/CxC_tot_het_withmet.rds"), exp="Lab Selfed C F1s")
 dat <- data.table(rbind(dt1, dt2, dt3, dt4))
 dat[all==2,geno:="hom_alt"]
 dat[all==0,geno:="hom_ref"]
@@ -128,8 +128,8 @@ toti.blop <- data.table(dat[all %in% c(0,1,2)][!is.na(variant.id.y)][gene=="Daph
                                n_lci=quantile(n, probs = 0.05),
                                snpset="BLOP"))
 
-# Data for simulated blue opsin gene genotypes based on RD
-blop <- data.table(readRDS("/scratch/csm6hg/data/Crosses.daphnia11806-ra.sims.rds"))
+# Data for simulated blue opsin gene genotypes based on read depth (RD)
+blop <- data.table(readRDS("/scratch/csm6hg/phd/data/Crosses.daphnia11806-ra.sims.rds"))
 blop.sum <- blop %>% group_by(snpset, exp) %>% summarize(num=n())  
 blop <- data.table(blop %>% 
           group_by(sim.geno, snpset, exp) %>% 
@@ -221,9 +221,9 @@ f1_daphnia_all <- {
 
 ggsave("/scratch/csm6hg/figs/SuppFigure_FIS_BLOP_new_crossAll.pdf", f1_daphnia_all, width = 6, height=12, dpi=300)
 
-#### Table of frequency in F1s ###
+#### Table of frequency in wild-caught F1s ###
 
-# Metadata
+# European D. pulex Metadata
 fin <- data.table(read.csv("/project/berglandlab/connor/metadata/samples.9.8.22.csv"))
 samps <- fread("/project/berglandlab/Karen/MappingDec2019/WithPulicaria/June2020/Superclones201617182019withObtusaandPulicaria_kingcorr_20200623_wmedrd.txt")
 sc <- samps[Nonindependent==0]
@@ -234,8 +234,8 @@ sc.ag <- sc[LabGenerated==F & Species=="pulex", list(clone=clone[which.max(medrd
 samps[LabGenerated==1][SC=="selfedC"]  # CxC lab
 samps[LabGenerated==1][AxCF1Hybrid==1] # AxC lab
 
-# Metadata of blop genotype
-blop.meta <- data.table(fread("/scratch/csm6hg/data/euroPulex.haplo.clustk3.bluopsin.txt") %>% 
+# Metadata of BLOP genotype in wild samples
+blop.meta <- data.table(fread("/scratch/csm6hg/phd/data/euroPulex.haplo.clustk3.bluopsin.txt") %>% 
             left_join(samps, by=c("Sample"="clone")))
 
 dat.blop <- data.table(dat[exp=="Wild AxC F1s"] %>% 
@@ -246,10 +246,17 @@ dat.blop <- data.table(dat[exp=="Wild AxC F1s"] %>%
                   mutate(sc_n=case_when(SC=="OO"~"OO",
                                         TRUE ~ "SC")))
 
+# Proportion of genotypes for BLOP
 dat.blop %>% 
-  group_by(sc_n, Genotype) %>% 
-  summarize(n())
+  group_by(Genotype) %>% 
+  summarize(n=n(),
+            prop=n()/dim(dat.blop)[1])
+
+# Proportion of genotypes for BLOP
+dat.blop %>% 
+  group_by(Genotype, sc_n) %>% 
+  summarize(n=n(),
+            prop=n()/dim(dat.blop)[1])
 
 # How many were wild-samples collected in 2018?
 samps[year=="2018"][population %in% c("D8","DBunk")][WildSequenced==1]
-

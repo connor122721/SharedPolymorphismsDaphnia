@@ -1,10 +1,12 @@
-# Code to generate site frequency spectra
+# Code to generate site frequency spectra from moments and calculate shared polymorphisms
 # module load gcc/11.4.0 openmpi/4.1.4 R/4.3.1; R
 
 # Setup
 library(tidyverse)
 library(data.table)
-setwd("/scratch/csm6hg/moments/sfss/sfs_csvs")
+
+# Working directory
+setwd("/scratch/csm6hg/phd/moments/sfss/sfs_csvs_rescale80")
 
 # Read in SFS function
 load_sfs <- function(name, min=1, scale=1) {
@@ -58,9 +60,70 @@ ld.dt <- data.table(rbindlist(ld.sfs, use.names = T, idcol = T)) %>%
          rep=tstrsplit(.id, ".", fixed=T)[[3]],
          vcf="Filtered")
 
+# saveRDS(ld.dt, file = "/scratch/csm6hg/phd/data/ld.dt.tot.20x20.rescale80.rds")
+# ld.dt <- data.table(readRDS("/scratch/csm6hg/phd/data/ld.dt.tot.20x20.rescale50.rds"))
+
+# Average values for SFS
+ld.dt1 <- data.table(ld.dt %>% 
+              group_by(row, col, model, vcf, size) %>% 
+              summarize(count_mean = mean(count, na.rm = T),
+                        count_med = median(count, na.rm = T)))
+
+# Denominator of all alleles
+denom = sum(ld.dt1[model == "empirical"]$count_mean)
+
+# SAP calculation - confidence intervals
+sum(ld.dt1[model == "empirical"][!row=="V1"][!col==1]$count_mean)/denom
+
+sum(ld.dt1[model == "split_mig"][!row=="V1"][!col==1]$count_mean)/denom
+
+sum(ld.dt1[model == "split_no_mig"][!row=="V1"][!col==1]$count_mean)/denom
+
+# Get SAP per replicate
+ld.dt.sap <- data.table(ld.dt %>% 
+                filter(row!="V1" & col !=1) %>% 
+                group_by(model, rep, size) %>% 
+                summarize(sap=(sum(count)/denom)*100))
+
+# Calculate the confidence interval
+sap.model_Mig <- lm(sap ~ 1, ld.dt.sap[model=="split_mig"][size==20][sap<3 & sap>0])
+confint(sap.model_Mig, level=0.95)
+
+sap.model_noMig <- lm(sap ~ 1, ld.dt.sap[model=="split_no_mig"][size==20][sap<3 & sap>=0])
+confint(sap.model_noMig, level=0.95)
+
+# Plotting SFS
+SFS <- {ld.dt1[!model=="from_ests"] %>% 
+    ggplot(., 
+           aes(x=row, 
+               y=col, 
+               fill=log10(count_mean))) +
+    geom_tile() + 
+    facet_grid(vcf ~ model,
+               labeller = labeller(sfs = c("empirical"="Empirical",
+                                           "from_ests"="From parameter estimates",
+                                           "split_mig"="Split-with-migration model",
+                                           "split_no_mig"="Split-without-migration model"),
+                                   vcf = c("Filtered"="Genome-wide"))) +
+    theme_classic() +
+    theme(axis.text.x=element_text(face="bold", size=16),
+          axis.text.y=element_text(face="bold", size=16),
+          text = element_text(face="bold", size=18), 
+          legend.text = element_text(face="bold", size=16),
+          strip.text=element_text(face="bold", size=16)) +
+    scico::scale_fill_scico(palette = "vik", na.value="white", begin = 1, end = 0) +
+    coord_fixed() +
+    scale_y_continuous(expand=c(0, 0)) +
+    xlab(expression(paste(bold("Euro."), bolditalic(" D. pulex")))) +
+    ylab(expression(paste(bold("NAm."), bolditalic(" D. pulex")))) +
+    labs(fill=bquote(bold(10^SNPs)))
+  
+}
+
 # Merge list of summary stats
-files.sum <- list.files(full.names = TRUE, pattern = '*.txt$', path = "../../output/")
-sap <- lapply(files.sum, fread)
+files.sum <- list.files(full.names = TRUE, pattern = '*.txt$', path = "../../output_eSMC")
+files.sum <- files.sum[files.sum %like% "rescaled80"]
+sap <- lapply(files.sum, function(x){fread(x,header=F,fill=T)})
 names(sap) <- files.sum
 
 # Merge
@@ -68,80 +131,16 @@ sap.dt <- data.table(rbindlist(sap, use.names = T, idcol = T)) %>%
   mutate(rep=tstrsplit(.id, ".", fixed=T)[[7]],
          vcf="Filtered")
 
-colnames(sap.dt)[1:8] <- c("file", "filt", "ns", "model",
-                      "Nnam", "Neuro", "ll", "sap")
+colnames(sap.dt) <- c("file", "filt", "ns", "model",
+                      "AIC", "BIC", "sap", "sap_ests", "extra", "rep", "vcf")
 
-# saveRDS(sap.dt, file = "/scratch/csm6hg/data/sap.dt.tot.20x20.rds")
+# saveRDS(sap.dt, file = "/scratch/csm6hg/phd/data/sap.dt.tot.20x20.rescale80.rds")
 # sap.dt <- data.table(readRDS("/scratch/csm6hg/data/sap.dt.tot.20x20.rds"))
 
-# saveRDS(ld.dt, file = "/scratch/csm6hg/data/ld.dt.tot.20x20.rds")
-# ld.dt <- data.table(readRDS("/scratch/csm6hg/data/ld.dt.tot.20x20.rds"))
-
 # Average SAP and get CI
-sap.model_mig <- lm(sap ~ 1, sap.dt[model=="sfs_split_mig_model"][ns==20])
-sap.model_emp <- lm(sap ~ 1, sap.dt[model=="sfs_empirical"][ns==20])
-sap.model_noMig <- lm(sap ~ 1, sap.dt[model=="sfs_split_no_mig_model"][ns==20])
-
-# Calculate the confidence interval
-confint(sap.model_mig, level=0.95)
-confint(sap.model_emp, level=0.95)
-confint(sap.model_noMig, level=0.95)
-
-# Average values for SFS
-ld.dt1 <- data.table(ld.dt %>% 
-      group_by(row, col, model, vcf, size) %>% 
-      summarize(count_mean = mean(count, na.rm = T),
-                count_med = median(count, na.rm = T)))
-
 sap.dt2 <- sap.dt %>% 
   group_by(model,ns) %>% 
   summarize(m=mean(sap))
-
-# Plotting SFS
-SFS <- {ld.dt1[!model == "from_ests"] %>% 
-  ggplot(., 
-         aes(x=row, 
-             y=col, 
-             fill=log10(count_mean))) +
-  geom_tile() + 
-  facet_grid(vcf ~ model,
-        labeller = labeller(sfs = c("empirical"="Empirical",
-                         "from_ests"="From parameter estimates",
-                         "split_mig"="Split-with-migration model",
-                         "split_no_mig"="Split-without-migration model"),
-                         vcf = c("Filtered"="Genome-wide"))) +
-  theme_classic() +
-    theme(axis.text.x=element_text(face="bold", size=16),
-          axis.text.y=element_text(face="bold", size=16),
-          text = element_text(face="bold", size=18), 
-          legend.text = element_text(face="bold", size=16),
-          strip.text=element_text(face="bold", size=16)) +
-  scico::scale_fill_scico(palette = "vik", na.value="white", begin = 1, end = 0) +
-  scale_y_continuous(expand=c(0, 0)) +
-  xlab(expression(paste(bold("Euro."), bolditalic(" D. pulex")))) +
-  ylab(expression(paste(bold("NAm."), bolditalic(" D. pulex")))) +
-  labs(fill=bquote(bold(10^SNPs)))
-
-}
-
-# SAP calculation
-sum(ld.dt1[model == "empirical"][!row=="V1"][!col==1]$count_mean)/sum(ld.dt1[model == "empirical"]$count_mean)
-
-sum(ld.dt1[model == "split_mig"][!row=="V1"][!col==1]$count_mean)/sum(ld.dt1[model == "split_mig"]$count_mean)
-
-sum(ld.dt1[model == "split_no_mig"][!row=="V1"][!col==1]$count_mean)/sum(ld.dt1[model == "split_no_mig"]$count_mean)
-
-ld.dt.sap <- data.table(ld.dt %>% 
-                filter(row!="V1" & col !=1) %>% 
-                group_by(model, rep, size) %>% 
-                summarize(sap=(sum(count)/388039.7)*100))
-
-# Calculate the confidence interval
-sap.model_Mig <- lm(sap ~ 1, ld.dt.sap[model=="split_mig"][size==20])
-confint(sap.model_Mig, level=0.95)
-
-sap.model_noMig <- lm(sap ~ 1, ld.dt.sap[model=="split_no_mig"][size==20])
-confint(sap.model_noMig, level=0.95)
 
 # Function to calculate standardized residuals
 calculate_standardized_residuals <- function(data) {
@@ -186,7 +185,7 @@ re <- colorRampPalette(c("mistyrose", "red2", "darkred"))(400)
 # Plotting residuals
 resid.plot <- {
   
-  resid[!count_mean==0] %>% 
+  resid[!count_mean==0][!model.x=="from_ests"][!model.y=="from_ests"] %>% 
     #mutate(residuals=datawizard::rescale(residuals, to=c(0,1))) %>% 
     ggplot(., aes(
       x=row,
