@@ -20,7 +20,7 @@ This section encompasses the pipeline for generating Variant Call Format (VCF) f
 
 - **VCF Creation**: 
   - Downloading short-read Illumina fastqs.
-  - Mapping to European *Daphnia pulex* genome.
+  - Mapping to European *Daphnia pulex* (D84A; GenBank assembly: GCA_023526725.1) genome.
   - BAM generation and merging.
   - HaplotypeCaller, GATK processing, merging, and SNP calling.
   - VCF and genomic data structure (GDS) generation.
@@ -37,5 +37,5 @@ This section encompasses the pipeline for generating Variant Call Format (VCF) f
   - WhatsHap phasing of samples and phased VCF creation.
  
 - **Lift Over**
-  - LiftOver of European and North American *Daphnia pulex* genomes.
+  - LiftOver of European and North American *Daphnia pulex* (KAP4; GenBank assembly: GCF_021134715.1) genomes.
   - Repeat masking, single-copy orthologous genes, and genotype concordance.
